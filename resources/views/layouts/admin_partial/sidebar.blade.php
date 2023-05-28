@@ -635,23 +635,19 @@
               <p>Level 1</p>
             </a>
           </li>
-          <li class="nav-header">LABELS</li>
+          <!-- <li class="nav-header">LABELS</li>
           <li class="nav-item">
-            <!-- <a href="#" class="nav-link">
-              <i class="nav-icon far fa-circle text-danger"></i>
-              <p class="text">Important</p>
-            </a> -->
-            <a class="dropdown-item" href="{{ route('logout') }}"
-                  onclick="event.preventDefault();
-                   document.getElementById('logout-form').submit();">
-                   <i class="nav-icon far fa-circle text-danger"></i>
-                                        {{ __('Logout') }}
+            <a class="dropdown-item" href="{{ route('admin.logout') }}">
+                            {{ __('Logout') }}
               
             </a>
-
-               <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                  @csrf
-              </form>
+          </li> -->
+          <li class="nav-header">PROFILE</li>
+          <li class="nav-item">
+            <a href="{{route('admin.logout')}}" id="logout" class="nav-link">
+              <i class="nav-icon far fa-circle text-danger"></i>
+              <p class="text">Logout</p>
+            </a>
           </li>
         </ul>
       </nav>

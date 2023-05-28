@@ -97,7 +97,7 @@
             });
     </script>
    {{-- before  logout showing alert message --}}
-     <!-- <script>  
+     <script>  
          $(document).on("click", "#logout", function(e){
              e.preventDefault();
              var link = $(this).attr("href");
@@ -116,7 +116,7 @@
                   }
                 });
             });
-    </script> -->
+    </script>
 
 
     <script>
