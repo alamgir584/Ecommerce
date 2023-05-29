@@ -19,7 +19,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
         Route::get('/edit/{id}','CategoryController@edit');
         Route::post('/update','CategoryController@update')->name('category.update');
         });
-             //subcategory Routes
+    //subcategory Routes
     Route::prefix('subcategory')->group(function () {
         Route::get('/','SubcategoryController@index')->name('subcategory.index');
         Route::post('/store','SubcategoryController@store')->name('subcategory.store');
@@ -27,5 +27,13 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
         Route::get('/edit/{id}','subcategoryController@edit');
         Route::post('/update','subcategoryController@update')->name('subcategory.update');
     });
+    //childcategory Routes
+    Route::prefix('childcategory')->group(function () {
+        Route::get('/','ChildcategoryController@index')->name('childcategory.index');
+        Route::post('/store','ChildcategoryController@store')->name('childcategory.store');
+        Route::get('/delete/{id}','ChildcategoryController@delete')->name('childcategory.delete');
+        Route::get('/edit/{id}','ChildcategoryController@edit');
+        Route::post('/update','ChildcategoryController@update')->name('childcategory.update');
+        });
 
     });
