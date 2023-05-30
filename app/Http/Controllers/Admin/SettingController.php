@@ -36,4 +36,23 @@ class SettingController extends Controller
         return redirect()->back()->with($notification);
 
     }
+            //smtp setting page
+            public function smtp()
+            {
+                 $smtp=DB::table('smtp')->first();
+                return view('admin.setting.smtp',compact('smtp'));
+            }
+    
+            //smtp update
+            public function smtpUpdate(Request $request, $id){
+                $data=array();
+                $data['mailer']=$request->mailer;
+                $data['host']=$request->host;
+                $data['port']=$request->port;
+                $data['user_name']=$request->user_name;
+                $data['password']=$request->password;
+                DB::table('smtp')->where('id',$id)->update($data);
+                $notification=array('messege' => 'SMTP Setting Updated!', 'alert-type' => 'success');
+                return redirect()->back()->with($notification);
+            }
 }
