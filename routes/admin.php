@@ -46,4 +46,42 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
         Route::post('/update','BrandController@update')->name('brand.update');
     });
 
+    
+    Route::prefix('setting')->group(function () {
+        //seo setting
+        Route::prefix('seo')->group(function () {
+            Route::get('/','SettingController@seo')->name('seo.setting');
+            Route::post('/update/{id}','SettingController@seoUpdate')->name('seo.setting.update');
+        });
+        //smtp setting
+		// Route::group(['prefix'=>'smtp'], function(){
+		// 	Route::get('/','SettingController@smtp')->name('smtp.setting');
+		// 	Route::post('/update/{id}','SettingController@smtpUpdate')->name('smtp.setting.update');
+	    // });
+        //page setting
+		// Route::group(['prefix'=>'page'], function(){
+		// 	Route::get('/','PageController@index')->name('page.index');
+        //     Route::get('/create','PageController@create')->name('create.page');
+        //     Route::post('/store', 'PageController@store')->name('page.store');
+        //     Route::get('/delete/{id}','PageController@destroy')->name('page.delete');
+		// 	Route::get('/edit/{id}','PageController@edit')->name('page.edit');
+		// 	Route::post('/update/{id}','PageController@update')->name('page.update');
+	    // });
+        //website setting
+		// Route::group(['prefix'=>'website'], function(){
+		// 	Route::get('/','SettingController@website')->name('website.setting');
+        //     Route::post('/update/{id}','SettingController@websiteupdate')->name('website.setting.update');
+	    // });
+        //warehouse setting
+		// Route::group(['prefix'=>'warehouse'], function(){
+		// 	Route::get('/','WarehouseController@index')->name('warehouse.index');
+		// 	Route::get('/create','WarehouseController@create')->name('create.warehouse');
+		// 	Route::post('/store','WarehouseController@store')->name('store.warehouse');
+        //     Route::get('/delete/{id}','WarehouseController@delete')->name('delete.warehouse');
+        //     Route::get('/edit/{id}','WarehouseController@edit')->name('edit.warehouse');
+        //     Route::post('/update/{id}','WarehouseController@update')->name('update.warehouse');
+	    // });
+
+    });
+
     });
