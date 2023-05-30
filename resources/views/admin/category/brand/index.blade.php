@@ -47,7 +47,7 @@
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>{{ $row->brand_name }}</td>
                                                 <td>{{ $row->brand_slug }}</td>
-                                                <td><img src="{{ asset('public/files/brand/' . $row->brand_logo) }}"
+                                                <td><img src="{{ asset('files/brand/' . $row->brand_logo) }}"
                                                         width="120" height="30"></td>
                                                 <td>
                                             <a id="brand_modal_open" href="#" class="btn btn-info btn-sm edit"
