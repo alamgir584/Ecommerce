@@ -59,14 +59,14 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
 			Route::post('/update/{id}','SettingController@smtpUpdate')->name('smtp.setting.update');
 	    });
         //page setting
-		// Route::group(['prefix'=>'page'], function(){
-		// 	Route::get('/','PageController@index')->name('page.index');
-        //     Route::get('/create','PageController@create')->name('create.page');
-        //     Route::post('/store', 'PageController@store')->name('page.store');
-        //     Route::get('/delete/{id}','PageController@destroy')->name('page.delete');
-		// 	Route::get('/edit/{id}','PageController@edit')->name('page.edit');
-		// 	Route::post('/update/{id}','PageController@update')->name('page.update');
-	    // });
+		Route::group(['prefix'=>'page'], function(){
+			Route::get('/','PageController@index')->name('page.index');
+            Route::get('/create','PageController@create')->name('create.page');
+            Route::post('/store', 'PageController@store')->name('page.store');
+            Route::get('/delete/{id}','PageController@destroy')->name('page.delete');
+			Route::get('/edit/{id}','PageController@edit')->name('page.edit');
+			Route::post('/update/{id}','PageController@update')->name('page.update');
+	    });
         //website setting
 		// Route::group(['prefix'=>'website'], function(){
 		// 	Route::get('/','SettingController@website')->name('website.setting');
