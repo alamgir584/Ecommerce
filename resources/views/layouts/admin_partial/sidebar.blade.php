@@ -121,7 +121,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href=" #" class="nav-link">
+                <a href="{{route('website.setting')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Website Setting</p>
                 </a>
@@ -139,7 +139,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('warehouse.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Warehouse</p>
                 </a>
@@ -190,7 +190,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('pickup-point.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Pickup</p>
                 </a>

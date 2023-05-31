@@ -21,6 +21,14 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
         Route::get('/edit/{id}','CategoryController@edit');
         Route::post('/update','CategoryController@update')->name('category.update');
         });
+
+
+    //Global Route
+    Route::get('/get-sub-category/{id}','CategoryController@GetSubCategory');
+    Route::get('/get-child-category/{id}','CategoryController@GetChildCategory');
+
+
+
     //subcategory Routes
     Route::prefix('subcategory')->group(function () {
         Route::get('/','SubcategoryController@index')->name('subcategory.index');
@@ -68,20 +76,40 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
 			Route::post('/update/{id}','PageController@update')->name('page.update');
 	    });
         //website setting
-		// Route::group(['prefix'=>'website'], function(){
-		// 	Route::get('/','SettingController@website')->name('website.setting');
-        //     Route::post('/update/{id}','SettingController@websiteupdate')->name('website.setting.update');
-	    // });
+		Route::group(['prefix'=>'website'], function(){
+			Route::get('/','SettingController@website')->name('website.setting');
+            Route::post('/update/{id}','SettingController@websiteupdate')->name('website.setting.update');
+	    });
         //warehouse setting
-		// Route::group(['prefix'=>'warehouse'], function(){
-		// 	Route::get('/','WarehouseController@index')->name('warehouse.index');
-		// 	Route::get('/create','WarehouseController@create')->name('create.warehouse');
-		// 	Route::post('/store','WarehouseController@store')->name('store.warehouse');
-        //     Route::get('/delete/{id}','WarehouseController@delete')->name('delete.warehouse');
-        //     Route::get('/edit/{id}','WarehouseController@edit')->name('edit.warehouse');
-        //     Route::post('/update/{id}','WarehouseController@update')->name('update.warehouse');
-	    // });
+		Route::group(['prefix'=>'warehouse'], function(){
+			Route::get('/','WarehouseController@index')->name('warehouse.index');
+			Route::get('/create','WarehouseController@create')->name('create.warehouse');
+			Route::post('/store','WarehouseController@store')->name('store.warehouse');
+            Route::get('/delete/{id}','WarehouseController@delete')->name('delete.warehouse');
+            Route::get('/edit/{id}','WarehouseController@edit')->name('edit.warehouse');
+            Route::post('/update/{id}','WarehouseController@update')->name('update.warehouse');
+	    });
 
     });
+
+    //product Routes
+    // Route::group(['prefix'=>'product'], function(){
+    //     Route::get('/','ProductController@index')->name('product.index');
+    //     Route::get('/create','ProductController@create')->name('product.create');
+    //     Route::post('/store','ProductController@store')->name('product.store');
+    //     Route::get('/delete/{id}','ProductController@delete')->name('product.delete');
+    //     Route::get('/edit/{id}','ProductController@edit')->name('product.edit');
+    //     Route::post('/update/{id}','ProductController@update')->name('product.update');
+        
+    // });
+    //Pickup Point Routes
+       Route::group(['prefix'=>'Pickup-point'], function(){
+           Route::get('/','PickupController@index')->name('pickup-point.index');
+            Route::get('/create','PickupController@create')->name('create.pickup-point');
+            Route::post('/store','PickupController@store')->name('store.pickup-point');
+            Route::get('/delete/{id}','PickupController@delete')->name('pickup-point.delete');
+            Route::get('/edit/{id}','PickupController@edit')->name('edit.pickup-point');
+            Route::post('/update/{id}','PickupController@update')->name('update.pickup-point');
+                    });
 
     });
