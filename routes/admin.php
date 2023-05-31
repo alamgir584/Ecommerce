@@ -92,6 +92,16 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
 
     });
 
+    //Coupon Routes
+        Route::group(['prefix'=>'coupon'], function(){
+            Route::get('/','CouponController@index')->name('coupon.index');
+            Route::get('/create','CouponController@create')->name('create.coupon');
+            Route::post('/store','CouponController@store')->name('store.coupon');
+            Route::get('/delete/{id}','CouponController@delete')->name('coupon.delete');
+            Route::get('/edit/{id}','CouponController@edit')->name('edit.coupon');
+            Route::post('/update/{id}','CouponController@update')->name('update.coupon');
+                    });
+
     //product Routes
     // Route::group(['prefix'=>'product'], function(){
     //     Route::get('/','ProductController@index')->name('product.index');
