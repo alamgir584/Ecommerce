@@ -99,14 +99,14 @@ class CategoryController extends Controller
     }
 
         //get sub category mane product add korle category select korle oi categoryr sub category asbe
-        // public function GetSubCategory($id)  //category_id
-        // {
-        //     $data=DB::table('subcategories')->where('category_id',$id)->get();
-        //     return response()->json($data);
-        // }
-        // public function GetChildCategory($id)
-        // {
-        //     $data=DB::table('childcategories')->where('subcategory_id',$id)->get();
-        //     return response()->json($data);
-        // }
+        public function GetSubCategory($id)  //category_id
+        {
+            $data=DB::table('subcategories')->where('category_id',$id)->get();
+            return response()->json($data);
+        }
+        public function GetChildCategory($id)
+        {
+            $data=DB::table('childcategories')->where('subcategory_id',$id)->get();
+            return response()->json($data);
+        }
 }

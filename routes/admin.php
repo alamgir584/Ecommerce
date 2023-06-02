@@ -23,10 +23,12 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
         });
 
 
+
+
     //Global Route
+    
     Route::get('/get-sub-category/{id}','CategoryController@GetSubCategory');
     Route::get('/get-child-category/{id}','CategoryController@GetChildCategory');
-
 
 
     //subcategory Routes
@@ -100,26 +102,30 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
             Route::get('/delete/{id}','CouponController@delete')->name('coupon.delete');
             Route::get('/edit/{id}','CouponController@edit')->name('edit.coupon');
             Route::post('/update/{id}','CouponController@update')->name('update.coupon');
-                    });
+        });
+
+            //Pickup Point Routes
+       Route::group(['prefix'=>'Pickup-point'], function(){
+        Route::get('/','PickupController@index')->name('pickup-point.index');
+         Route::get('/create','PickupController@create')->name('create.pickup-point');
+         Route::post('/store','PickupController@store')->name('store.pickup-point');
+         Route::get('/delete/{id}','PickupController@delete')->name('pickup-point.delete');
+         Route::get('/edit/{id}','PickupController@edit')->name('edit.pickup-point');
+         Route::post('/update/{id}','PickupController@update')->name('update.pickup-point');
+     });
+     
 
     //product Routes
-    // Route::group(['prefix'=>'product'], function(){
-    //     Route::get('/','ProductController@index')->name('product.index');
-    //     Route::get('/create','ProductController@create')->name('product.create');
-    //     Route::post('/store','ProductController@store')->name('product.store');
-    //     Route::get('/delete/{id}','ProductController@delete')->name('product.delete');
-    //     Route::get('/edit/{id}','ProductController@edit')->name('product.edit');
-    //     Route::post('/update/{id}','ProductController@update')->name('product.update');
+      Route::group(['prefix'=>'product'], function(){
+          Route::get('/','ProductController@index')->name('product.index');
+          Route::get('/create','ProductController@create')->name('product.create');
+          Route::post('/store','ProductController@store')->name('product.store');
+          Route::get('/delete/{id}','ProductController@delete')->name('product.delete');
+          Route::get('/edit/{id}','ProductController@edit')->name('product.edit');
+          Route::post('/update/{id}','ProductController@update')->name('product.update');
         
-    // });
-    //Pickup Point Routes
-       Route::group(['prefix'=>'Pickup-point'], function(){
-           Route::get('/','PickupController@index')->name('pickup-point.index');
-            Route::get('/create','PickupController@create')->name('create.pickup-point');
-            Route::post('/store','PickupController@store')->name('store.pickup-point');
-            Route::get('/delete/{id}','PickupController@delete')->name('pickup-point.delete');
-            Route::get('/edit/{id}','PickupController@edit')->name('edit.pickup-point');
-            Route::post('/update/{id}','PickupController@update')->name('update.pickup-point');
-                    });
+       });
+     
+
 
     });
