@@ -1,5 +1,13 @@
 @extends('layouts.app')
+@section('navbar')
+<!-- Main Navigation start -->
+@include('layouts.front_partial.main_nav');
+<!-- Main Navigation end -->
+@endsection
 @section('content')
+
+   
+
 <!-- Banner -->
 
 <div class="banner">

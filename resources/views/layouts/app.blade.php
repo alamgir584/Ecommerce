@@ -21,6 +21,8 @@
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/plugins/slick-1.8.0/slick.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/main_styles.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/responsive.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/product_styles.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/product_responsive.css')}}">
 
 </head>
 
@@ -142,10 +144,7 @@
 				</div>
 			</div>
 		</div>
-		
-   <!-- Main Navigation start -->
-    @include('layouts.front_partial.main_nav');
-  <!-- Main Navigation end -->
+		@yield('navbar')
 
 	</header>
 	
@@ -266,6 +265,7 @@ Copyright &copy;<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd
 <script src="{{asset('frontend/plugins/slick-1.8.0/slick.js')}}"></script>
 <script src="{{asset('frontend/plugins/easing/easing.js')}}"></script>
 <script src="{{asset('frontend/js/custom.js')}}"></script>
+<script src="{{asset('frontend/js/product_custom.js')}}"></script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
