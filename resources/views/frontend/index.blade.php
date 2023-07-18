@@ -10,7 +10,7 @@
 
 <!-- Banner -->
 
-<div class="banner">
+{{-- <div class="banner">
 		<div class="banner_background" style="background-image:url(images/banner_background.jpg)"></div>
 		<div class="container fill_height">
 			<div class="row fill_height">
@@ -25,7 +25,31 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --}}
+
+		<!-- Banner -->
+		<div class="banner">
+			<div class="banner_background" style="background-image:url({{asset('frontend/images/banner_background.jpg')}})"></div>
+			<div class="container fill_height">
+				<div class="row fill_height">
+					<div class="banner_product_image"><img src="{{asset('files/product/'.$bannerproduct->thumbnail)}}" alt="{{$bannerproduct->name}}"></div>
+					  <div class="col-lg-5 offset-lg-4 fill_height">
+						<div class="banner_content">
+							<h1 class="banner_text">{{$bannerproduct->name}}</h1>
+							@if ($bannerproduct->discount_price==NULL)
+							<div class="viewd_price"><span>{{$setting->currency}}{{$bannerproduct->selling_price}}</span></div>
+							@else
+							<div class="viewd_price" ><span class="text-danger"><del>{{$setting->currency}}{{$bannerproduct->discount_price}} </del>
+							</span class="text-danger"> {{$setting->currency}}{{$bannerproduct->selling_price}}</div>
+							@endif
+	
+							<div class="banner_product_name">{{$bannerproduct->Brandcategory->brand_name}}</div>
+							<div class="button banner_button"><a href="{{route('product.details',$bannerproduct->slug)}}">Shop Now</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 	<!-- Characteristics -->
 
