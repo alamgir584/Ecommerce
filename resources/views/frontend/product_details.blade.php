@@ -1,111 +1,197 @@
 @extends('layouts.app')
 @section('content')
 
-<nav class="main_nav">
+{{-- for single roduct page --}}
+<link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/bootstrap4/bootstrap.min.css')}}">
+<link href="{{asset('frontend/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css')}}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{asset('frontend/plugins/OwlCarousel2-2.2.1/owl.carousel.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('frontend/plugins/OwlCarousel2-2.2.1/owl.theme.default.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('frontend/plugins/OwlCarousel2-2.2.1/animate.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/product_styles.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/product_responsive.css')}}">
+
+@include('layouts.front_partial.collaps_nav')
+<!-- Single Product -->
+
+
+<div class="single_product">
+    <div class="container">
+        <div class="row">
+
+            <!-- Images -->
+            <div class="col-lg-2 order-lg-1 order-2">
+                <ul class="image_list">
+                    <li data-image="images/single_4.jpg"><img src="images/single_4.jpg" alt=""></li>
+                    <li data-image="images/single_2.jpg"><img src="images/single_2.jpg" alt=""></li>
+                    <li data-image="images/single_3.jpg"><img src="images/single_3.jpg" alt=""></li>
+                </ul>
+            </div>
+
+            <!-- Selected Image -->
+            <div class="col-lg-5 order-lg-2 order-1">
+                <div class="image_selected"><img src="{{('frontend/images/single_4.jpg')}}" alt=""></div>
+            </div>
+
+            <!-- Description -->
+            <div class="col-lg-5 order-3">
+                <div class="product_description">
+                    <div class="product_category">Laptops</div>
+                    <div class="product_name">MacBook Air 13</div>
+                    <div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
+                    <div class="product_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum. laoreet turpis, nec sollicitudin dolor cursus at. Maecenas aliquet, dolor a faucibus efficitur, nisi tellus cursus urna, eget dictum lacus turpis.</p></div>
+                    <div class="order_info d-flex flex-row">
+                        <form action="#">
+                            <div class="clearfix" style="z-index: 1000;">
+
+                                <!-- Product Quantity -->
+                                <div class="product_quantity clearfix">
+                                    <span>Quantity: </span>
+                                    <input id="quantity_input" type="text" pattern="[0-9]*" value="1">
+                                    <div class="quantity_buttons">
+                                        <div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fas fa-chevron-up"></i></div>
+                                        <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fas fa-chevron-down"></i></div>
+                                    </div>
+                                </div>
+
+                                <!-- Product Color -->
+                                <ul class="product_color">
+                                    <li>
+                                        <span>Color: </span>
+                                        <div class="color_mark_container"><div id="selected_color" class="color_mark"></div></div>
+                                        <div class="color_dropdown_button"><i class="fas fa-chevron-down"></i></div>
+
+                                        <ul class="color_list">
+                                            <li><div class="color_mark" style="background: #999999;"></div></li>
+                                            <li><div class="color_mark" style="background: #b19c83;"></div></li>
+                                            <li><div class="color_mark" style="background: #000000;"></div></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                            </div>
+
+                            <div class="product_price">$2000</div>
+                            <div class="button_container">
+                                <button type="button" class="button cart_button">Add to Cart</button>
+                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Recently Viewed -->
+
+<div class="viewed">
     <div class="container">
         <div class="row">
             <div class="col">
-                
-                <div class="main_nav_content d-flex flex-row">
+                <div class="viewed_title_container">
+                    <h3 class="viewed_title">Recently Viewed</h3>
+                    <div class="viewed_nav_container">
+                        <div class="viewed_nav viewed_prev"><i class="fas fa-chevron-left"></i></div>
+                        <div class="viewed_nav viewed_next"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                </div>
 
-                    <!-- Categories Menu -->
+                <div class="viewed_slider_container">
+                    
+                    <!-- Recently Viewed Slider -->
 
-                    <div class="cat_menu_container">
-                        <div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
-                            <div class="cat_burger"><span></span><span></span><span></span></div>
-                            <div class="cat_menu_text">categories</div>
+                    <div class="owl-carousel owl-theme viewed_slider">
+                        
+                        <!-- Recently Viewed Item -->
+                        <div class="owl-item">
+                            <div class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
+                                <div class="viewed_image"><img src="{{asset('frontend/images/view_1.jpg')}}" alt=""></div>
+                                <div class="viewed_content text-center">
+                                    <div class="viewed_price">$225<span>$300</span></div>
+                                    <div class="viewed_name"><a href="#">Beoplay H7</a></div>
+                                </div>
+                                <ul class="item_marks">
+                                    <li class="item_mark item_discount">-25%</li>
+                                    <li class="item_mark item_new">new</li>
+                                </ul>
+                            </div>
                         </div>
 
-                        <ul class="cat_menu">
-                            <li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
-                            <li><a href="#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
-                            <li class="hassubs">
-                                <a href="#">Hardware<i class="fas fa-chevron-right"></i></a>
-                                <ul>
-                                    <li class="hassubs">
-                                        <a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-                                        <ul>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
+                        <!-- Recently Viewed Item -->
+                        <div class="owl-item">
+                            <div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
+                                <div class="viewed_image"><img src="images/view_2.jpg" alt=""></div>
+                                <div class="viewed_content text-center">
+                                    <div class="viewed_price">$379</div>
+                                    <div class="viewed_name"><a href="#">LUNA Smartphone</a></div>
+                                </div>
+                                <ul class="item_marks">
+                                    <li class="item_mark item_discount">-25%</li>
+                                    <li class="item_mark item_new">new</li>
                                 </ul>
-                            </li>
-                            <li><a href="#">Smartphones & Tablets<i class="fas fa-chevron-right"></i></a></li>
-                            <li><a href="#">TV & Audio<i class="fas fa-chevron-right"></i></a></li>
-                            <li><a href="#">Gadgets<i class="fas fa-chevron-right"></i></a></li>
-                            <li><a href="#">Car Electronics<i class="fas fa-chevron-right"></i></a></li>
-                            <li><a href="#">Video Games & Consoles<i class="fas fa-chevron-right"></i></a></li>
-                            <li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
-                        </ul>
-                    </div>
+                            </div>
+                        </div>
 
-                    <!-- Main Nav Menu -->
-
-                    <div class="main_nav_menu ml-auto">
-                        <ul class="standard_dropdown main_nav_dropdown">
-                            <li><a href="index-2.html">Home<i class="fas fa-chevron-down"></i></a></li>
-                            <li class="hassubs">
-                                <a href="#">Super Deals<i class="fas fa-chevron-down"></i></a>
-                                <ul>
-                                    <li>
-                                        <a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                        <ul>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
+                        <!-- Recently Viewed Item -->
+                        <div class="owl-item">
+                            <div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
+                                <div class="viewed_image"><img src="images/view_3.jpg" alt=""></div>
+                                <div class="viewed_content text-center">
+                                    <div class="viewed_price">$225</div>
+                                    <div class="viewed_name"><a href="#">Samsung J730F...</a></div>
+                                </div>
+                                <ul class="item_marks">
+                                    <li class="item_mark item_discount">-25%</li>
+                                    <li class="item_mark item_new">new</li>
                                 </ul>
-                            </li>
-                            <li class="hassubs">
-                                <a href="#">Featured Brands<i class="fas fa-chevron-down"></i></a>
-                                <ul>
-                                    <li>
-                                        <a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                        <ul>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                </ul>
-                            </li>
-                            <li class="hassubs">
-                                <a href="#">Pages<i class="fas fa-chevron-down"></i></a>
-                                <ul>
-                                    <li><a href="shop.html">Shop<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="product.html">Product<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="blog_single.html">Blog Post<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="regular.html">Regular Post<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
-                                </ul>
-                            </li>
-                            <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-                            <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
-                        </ul>
-                    </div>
+                            </div>
+                        </div>
 
-                    <!-- Menu Trigger -->
+                        <!-- Recently Viewed Item -->
+                        <div class="owl-item">
+                            <div class="viewed_item is_new d-flex flex-column align-items-center justify-content-center text-center">
+                                <div class="viewed_image"><img src="images/view_4.jpg" alt=""></div>
+                                <div class="viewed_content text-center">
+                                    <div class="viewed_price">$379</div>
+                                    <div class="viewed_name"><a href="#">Huawei MediaPad...</a></div>
+                                </div>
+                                <ul class="item_marks">
+                                    <li class="item_mark item_discount">-25%</li>
+                                    <li class="item_mark item_new">new</li>
+                                </ul>
+                            </div>
+                        </div>
 
-                    <div class="menu_trigger_container ml-auto">
-                        <div class="menu_trigger d-flex flex-row align-items-center justify-content-end">
-                            <div class="menu_burger">
-                                <div class="menu_trigger_text">menu</div>
-                                <div class="cat_burger menu_burger_inner"><span></span><span></span><span></span></div>
+                        <!-- Recently Viewed Item -->
+                        <div class="owl-item">
+                            <div class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
+                                <div class="viewed_image"><img src="images/view_5.jpg" alt=""></div>
+                                <div class="viewed_content text-center">
+                                    <div class="viewed_price">$225<span>$300</span></div>
+                                    <div class="viewed_name"><a href="#">Sony PS4 Slim</a></div>
+                                </div>
+                                <ul class="item_marks">
+                                    <li class="item_mark item_discount">-25%</li>
+                                    <li class="item_mark item_new">new</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Recently Viewed Item -->
+                        <div class="owl-item">
+                            <div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
+                                <div class="viewed_image"><img src="images/view_6.jpg" alt=""></div>
+                                <div class="viewed_content text-center">
+                                    <div class="viewed_price">$375</div>
+                                    <div class="viewed_name"><a href="#">Speedlink...</a></div>
+                                </div>
+                                <ul class="item_marks">
+                                    <li class="item_mark item_discount">-25%</li>
+                                    <li class="item_mark item_new">new</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -114,56 +200,59 @@
             </div>
         </div>
     </div>
-</nav>
+</div>
 
-<div class="characteristics">
+<!-- Brands -->
+
+<div class="brands">
     <div class="container">
         <div class="row">
+            <div class="col">
+                <div class="brands_slider_container">
+                    
+                    <!-- Brands Slider -->
 
-            <!-- Char. Item -->
-            <div class="col-lg-3 col-md-6 char_col">
-                
-                <div class="char_item d-flex flex-row align-items-center justify-content-start">
-                    <div class="char_icon"><img src="{{asset('frontend/images/char_1.png')}}" alt=""></div>
-                    <div class="char_content">
-                        <div class="char_title">Free Delivery</div>
-                        <div class="char_subtitle">from $50</div>
+                    <div class="owl-carousel owl-theme brands_slider">
+                        
+                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_1.jpg')}}" alt=""></div></div>
+                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_2.jpg')}}" alt=""></div></div>
+                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_3.jpg" alt=""></div></div>
+                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_4.jpg" alt=""></div></div>
+                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_5.jpg" alt=""></div></div>
+                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_6.jpg" alt=""></div></div>
+                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_7.jpg" alt=""></div></div>
+                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_8.jpg" alt=""></div></div>
+
                     </div>
+                    
+                    <!-- Brands Slider Navigation -->
+                    <div class="brands_nav brands_prev"><i class="fas fa-chevron-left"></i></div>
+                    <div class="brands_nav brands_next"><i class="fas fa-chevron-right"></i></div>
+
                 </div>
             </div>
+        </div>
+    </div>
+</div>
 
-            <!-- Char. Item -->
-            <div class="col-lg-3 col-md-6 char_col">
-                
-                <div class="char_item d-flex flex-row align-items-center justify-content-start">
-                    <div class="char_icon"><img src="{{asset('frontend/images/char_2.png')}}" alt=""></div>
-                    <div class="char_content">
-                        <div class="char_title">Free Delivery</div>
-                        <div class="char_subtitle">from $50</div>
+<!-- Newsletter -->
+
+<div class="newsletter">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="newsletter_container d-flex flex-lg-row flex-column align-items-lg-center align-items-center justify-content-lg-start justify-content-center">
+                    <div class="newsletter_title_container">
+                        <div class="newsletter_icon"><img src="images/send.png" alt=""></div>
+                        <div class="newsletter_title">Sign up for Newsletter</div>
+                        <div class="newsletter_text"><p>...and receive %20 coupon for first shopping.</p></div>
                     </div>
-                </div>
-            </div>
-
-            <!-- Char. Item -->
-            <div class="col-lg-3 col-md-6 char_col">
-                
-                <div class="char_item d-flex flex-row align-items-center justify-content-start">
-                    <div class="char_icon"><img src="{{asset('frontend/images/char_3.png')}}" alt=""></div>
-                    <div class="char_content">
-                        <div class="char_title">Free Delivery</div>
-                        <div class="char_subtitle">from $50</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Char. Item -->
-            <div class="col-lg-3 col-md-6 char_col">
-                
-                <div class="char_item d-flex flex-row align-items-center justify-content-start">
-                    <div class="char_icon"><img src="{{asset('frontend/images/char_4.png')}}" alt=""></div>
-                    <div class="char_content">
-                        <div class="char_title">Free Delivery</div>
-                        <div class="char_subtitle">from $50</div>
+                    <div class="newsletter_content clearfix">
+                        <form action="#" class="newsletter_form">
+                            <input type="email" class="newsletter_input" required="required" placeholder="Enter your email address">
+                            <button class="newsletter_button">Subscribe</button>
+                        </form>
+                        <div class="newsletter_unsubscribe_link"><a href="#">unsubscribe</a></div>
                     </div>
                 </div>
             </div>
@@ -171,6 +260,18 @@
     </div>
 </div>
 
+{{-- for single roduct page --}}
+<script src="{{asset('frontend/js/jquery-3.3.1.min.js')}}"></script>
+<script src="{{asset('frontend/styles/bootstrap4/popper.js')}}"></script>
+<script src="{{asset('frontend/styles/bootstrap4/bootstrap.min.js')}}"></script>
+<script src="{{asset('frontend/plugins/greensock/TweenMax.min.js')}}"></script>
+<script src="{{asset('frontend/plugins/greensock/TimelineMax.min.js')}}"></script>
+<script src="{{asset('frontend/plugins/scrollmagic/ScrollMagic.min.js')}}"></script>
+<script src="{{asset('frontend/plugins/greensock/animation.gsap.min.js')}}"></script>
+<script src="{{asset('frontend/plugins/greensock/ScrollToPlugin.min.js')}}"></script>
+<script src="{{asset('frontend/plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
+<script src="{{asset('frontend/plugins/easing/easing.js')}}"></script>
+<script src="{{asset('frontend/js/product_custom.js')}}"></script>
 
 
 @endsection
