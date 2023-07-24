@@ -1,19 +1,10 @@
 @extends('layouts.app')
 @section('content')
 
-{{-- for single roduct page --}}
-<link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/bootstrap4/bootstrap.min.css')}}">
-<link href="{{asset('frontend/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css')}}" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="{{asset('frontend/plugins/OwlCarousel2-2.2.1/owl.carousel.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('frontend/plugins/OwlCarousel2-2.2.1/owl.theme.default.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('frontend/plugins/OwlCarousel2-2.2.1/animate.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/product_styles.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/product_responsive.css')}}">
-
 @include('layouts.front_partial.collaps_nav')
+
+
 <!-- Single Product -->
-
-
 <div class="single_product">
     <div class="container">
         <div class="row">
@@ -21,21 +12,21 @@
             <!-- Images -->
             <div class="col-lg-2 order-lg-1 order-2">
                 <ul class="image_list">
-                    <li data-image="images/single_4.jpg"><img src="images/single_4.jpg" alt=""></li>
-                    <li data-image="images/single_2.jpg"><img src="images/single_2.jpg" alt=""></li>
-                    <li data-image="images/single_3.jpg"><img src="images/single_3.jpg" alt=""></li>
+                    <li data-image="{{asset('frontend/images/view_1.jpg')}}"><img src="{{asset('frontend/images/view_1.jpg')}}" alt=""></li>
+                    <li data-image="{{asset('frontend/images/view_2.jpg')}}"><img src="{{asset('frontend/images/view_2.jpg')}}" alt=""></li>
+                    <li data-image="{{asset('frontend/images/view_3.jpg')}}"><img src="{{asset('frontend/images/view_3.jpg')}}" alt=""></li>
                 </ul>
             </div>
 
             <!-- Selected Image -->
             <div class="col-lg-5 order-lg-2 order-1">
-                <div class="image_selected"><img src="{{('frontend/images/single_4.jpg')}}" alt=""></div>
+                <div class="image_selected"><img src="{{asset('frontend/images/view_1.jpg')}}" alt=""></div>
             </div>
 
             <!-- Description -->
             <div class="col-lg-5 order-3">
                 <div class="product_description">
-                    <div class="product_category">Laptops</div>
+                    <div class="product_category">{{$product->category->category_name}}>{{$product->subcategory->subcategory_name}}</div>
                     <div class="product_name">MacBook Air 13</div>
                     <div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
                     <div class="product_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum. laoreet turpis, nec sollicitudin dolor cursus at. Maecenas aliquet, dolor a faucibus efficitur, nisi tellus cursus urna, eget dictum lacus turpis.</p></div>
@@ -123,7 +114,7 @@
                         <!-- Recently Viewed Item -->
                         <div class="owl-item">
                             <div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-                                <div class="viewed_image"><img src="images/view_2.jpg" alt=""></div>
+                                <div class="viewed_image"><img src="{{asset('frontend/images/view_2.jpg')}}" alt=""></div>
                                 <div class="viewed_content text-center">
                                     <div class="viewed_price">$379</div>
                                     <div class="viewed_name"><a href="#">LUNA Smartphone</a></div>
@@ -138,7 +129,7 @@
                         <!-- Recently Viewed Item -->
                         <div class="owl-item">
                             <div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-                                <div class="viewed_image"><img src="images/view_3.jpg" alt=""></div>
+                                <div class="viewed_image"><img src="{{asset('frontend/images/view_3.jpg')}}" alt=""></div>
                                 <div class="viewed_content text-center">
                                     <div class="viewed_price">$225</div>
                                     <div class="viewed_name"><a href="#">Samsung J730F...</a></div>
@@ -153,7 +144,7 @@
                         <!-- Recently Viewed Item -->
                         <div class="owl-item">
                             <div class="viewed_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-                                <div class="viewed_image"><img src="images/view_4.jpg" alt=""></div>
+                                <div class="viewed_image"><img src="{{asset('frontend/images/view_4.jpg')}}" alt=""></div>
                                 <div class="viewed_content text-center">
                                     <div class="viewed_price">$379</div>
                                     <div class="viewed_name"><a href="#">Huawei MediaPad...</a></div>
@@ -168,7 +159,7 @@
                         <!-- Recently Viewed Item -->
                         <div class="owl-item">
                             <div class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                                <div class="viewed_image"><img src="images/view_5.jpg" alt=""></div>
+                                <div class="viewed_image"><img src="{{asset('frontend/images/view_5.jpg')}}" alt=""></div>
                                 <div class="viewed_content text-center">
                                     <div class="viewed_price">$225<span>$300</span></div>
                                     <div class="viewed_name"><a href="#">Sony PS4 Slim</a></div>
@@ -183,7 +174,7 @@
                         <!-- Recently Viewed Item -->
                         <div class="owl-item">
                             <div class="viewed_item d-flex flex-column align-items-center justify-content-center text-center">
-                                <div class="viewed_image"><img src="images/view_6.jpg" alt=""></div>
+                                <div class="viewed_image"><img src="{{asset('frontend/images/view_6.jpg')}}" alt=""></div>
                                 <div class="viewed_content text-center">
                                     <div class="viewed_price">$375</div>
                                     <div class="viewed_name"><a href="#">Speedlink...</a></div>
@@ -216,12 +207,12 @@
                         
                         <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_1.jpg')}}" alt=""></div></div>
                         <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_2.jpg')}}" alt=""></div></div>
-                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_3.jpg" alt=""></div></div>
-                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_4.jpg" alt=""></div></div>
-                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_5.jpg" alt=""></div></div>
-                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_6.jpg" alt=""></div></div>
-                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_7.jpg" alt=""></div></div>
-                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="images/brands_8.jpg" alt=""></div></div>
+                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_3.jpg')}}" alt=""></div></div>
+                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_4.jpg')}}" alt=""></div></div>
+                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_5.jpg')}}" alt=""></div></div>
+                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_6.jpg')}}" alt=""></div></div>
+                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_7.jpg')}}" alt=""></div></div>
+                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_8.jpg')}}" alt=""></div></div>
 
                     </div>
                     
@@ -259,19 +250,6 @@
         </div>
     </div>
 </div>
-
-{{-- for single roduct page --}}
-<script src="{{asset('frontend/js/jquery-3.3.1.min.js')}}"></script>
-<script src="{{asset('frontend/styles/bootstrap4/popper.js')}}"></script>
-<script src="{{asset('frontend/styles/bootstrap4/bootstrap.min.js')}}"></script>
-<script src="{{asset('frontend/plugins/greensock/TweenMax.min.js')}}"></script>
-<script src="{{asset('frontend/plugins/greensock/TimelineMax.min.js')}}"></script>
-<script src="{{asset('frontend/plugins/scrollmagic/ScrollMagic.min.js')}}"></script>
-<script src="{{asset('frontend/plugins/greensock/animation.gsap.min.js')}}"></script>
-<script src="{{asset('frontend/plugins/greensock/ScrollToPlugin.min.js')}}"></script>
-<script src="{{asset('frontend/plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
-<script src="{{asset('frontend/plugins/easing/easing.js')}}"></script>
-<script src="{{asset('frontend/js/product_custom.js')}}"></script>
 
 
 @endsection
