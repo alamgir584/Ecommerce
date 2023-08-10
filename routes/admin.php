@@ -14,7 +14,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
 
 
     //category Routes
-    Route::prefix('category')->group(function () {
+    Route::prefix('admin/category')->group(function () {
         Route::get('/','CategoryController@index')->name('category.index');
         Route::post('/store','CategoryController@store')->name('category.store');
         Route::get('/delete/{id}','CategoryController@delete')->name('category.delete');
@@ -32,7 +32,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
 
 
     //subcategory Routes
-    Route::prefix('subcategory')->group(function () {
+    Route::prefix('admin/subcategory')->group(function () {
         Route::get('/','SubcategoryController@index')->name('subcategory.index');
         Route::post('/store','SubcategoryController@store')->name('subcategory.store');
         Route::get('/delete/{id}','subcategoryController@delete')->name('subcategory.delete');
@@ -40,7 +40,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
         Route::post('/update','subcategoryController@update')->name('subcategory.update');
     });
     //childcategory Routes
-    Route::prefix('childcategory')->group(function () {
+    Route::prefix('admin/childcategory')->group(function () {
         Route::get('/','ChildcategoryController@index')->name('childcategory.index');
         Route::post('/store','ChildcategoryController@store')->name('childcategory.store');
         Route::get('/delete/{id}','ChildcategoryController@delete')->name('childcategory.delete');
@@ -48,7 +48,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
         Route::post('/update','ChildcategoryController@update')->name('childcategory.update');
         });
     //Brand Routes
-    Route::prefix('brand')->group(function () {
+    Route::prefix('admin/brand')->group(function () {
         Route::get('/','BrandController@index')->name('brand.index');
         Route::post('/store','BrandController@store')->name('brand.store');
         Route::get('/delete/{id}','BrandController@delete')->name('brand.delete');
@@ -57,7 +57,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
     });
 
     
-    Route::prefix('setting')->group(function () {
+    Route::prefix('admin/setting')->group(function () {
         //seo setting
         Route::prefix('seo')->group(function () {
             Route::get('/','SettingController@seo')->name('seo.setting');
@@ -116,7 +116,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
      
 
     //product Routes
-      Route::group(['prefix'=>'product'], function(){
+      Route::group(['prefix'=>'admin/product'], function(){
           Route::get('/','ProductController@index')->name('product.index');
           Route::get('/create','ProductController@create')->name('product.create');
           Route::post('/store','ProductController@store')->name('product.store');

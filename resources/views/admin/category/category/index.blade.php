@@ -1,22 +1,20 @@
 @extends('layouts.admin')
 
 @section('admin_content')
-  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0">Category</h1>
-          </div><!-- /.col -->
+          </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <button class="btn btn-primary" data-toggle="modal" data-target="#categoryModal">+Add New</button>
             </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
+          </div>
+        </div>
+      </div>
     </div>
 
         <!-- Main content -->
@@ -29,8 +27,8 @@
                       <h3 class="card-title">All Categories List</h3>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
+                    <div class="card-body text-center">
+                        <table id="example1" class="table table-bordered table-striped table-sm">
                             <thead>
                             <tr>
                               <th>SL.</th>
@@ -41,7 +39,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach ($data as $key=>$row )
+                            @foreach ($data as $key=>$row )
 
 
                             <tr>
@@ -87,7 +85,7 @@
         <div class="modal-body">
             <div class="form-group">
               <label for="category_name">Category Name</label>
-              <input type="text" class="form-control" name="category_name" id="category_name" required>
+              <input type="text" class="form-control" name="category_name" id="category_name" placeholder="category name" required>
               <small id="emailHelp" class="form-text text-muted">Your main category</small>
             </div>
             <div class="form-group">
@@ -132,14 +130,14 @@
         <div class="modal-body">
             <div class="form-group">
               <label for="category_name">Category Name</label>
-              <input type="text" class="form-control" name="category_name" id="edit_category_name" required>
+              <input type="text" class="form-control" name="category_name" id="edit_category_name" >
               <input type="hidden" class="form-control" id="category_id" name="id" >
               <small id="emailHelp" class="form-text text-muted">Your main category</small>
             </div>
 
             <div class="form-group">
                 <label for="icon">Category Icon</label>
-                <input type="file" class="form-control" name="icon" id="edit_icon" required>
+                <input type="file" class="form-control" name="icon" id="edit_icon" >
                 <input type="hidden"  id="old_icon" name="old_icon">
                 <small id="emailHelp" class="form-text text-muted">Your Main Icon</small>
             </div>
@@ -151,6 +149,14 @@
                 </select>
                 <small id="emailHelp" class="form-text text-muted">If yes it will be show on your home page</small>
               </div> --}}
+              {{-- <div class="form-group">
+                <label for="category_name">Show on Homepage</label>
+               <select class="form-control" name="home_page">
+                 <option value="1" @if($data->home_page==1) selected @endif>Yes</option>
+                 <option value="0" @if($data->home_page==0) selected @endif>No</option>
+               </select>
+                <small id="emailHelp" class="form-text text-muted">If yes it will be show on your home page</small>
+              </div>  --}}
 
         </div>
         <div class="modal-footer">
@@ -165,5 +171,17 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-@include("admin.category.category.category-js")
+  <script type="text/javascript">
+    $('body').on('click','.edit',function(){
+     let cat_id=$(this).data('id');
+     $.get("category/edit/"+cat_id,function(data){
+             $('#edit_category_name').val(data.category_name);
+             $('#old_icon').val(data.icon);
+             $('#home_page').val(data.home_page);
+             $('#category_id').val(data.id);
+     });
+    });
+
+    </script>
+
 @endsection

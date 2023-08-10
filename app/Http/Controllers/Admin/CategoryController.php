@@ -29,13 +29,13 @@ class CategoryController extends Controller
             'category_name' => 'required|unique:categories|max:55',
             'icon' => 'required',
         ]);
-        $slug=Str::slug($request->category_name, '-');
+        //$slug=Str::slug($request->category_name, '-');
 
 
         $photo=$request->icon;
         $photoname=uniqid().'.'.$photo->getClientOriginalName();
         Image::make($photo)->resize(32,32)->save('files/category/'.$photoname);
-        $data['icon']='public/files/category/'.$photoname;
+        $data['icon']='files/category/'.$photoname;
 
         Category::insert([
             'category_name'=>$request->category_name,
@@ -68,15 +68,17 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
+        //$data=DB::table('categories')->where('id',$id)->first();
         $data=Category::findorfail($id);
         return response()->json($data);
     }
     public function update(Request $request)
     {
-        
+
         $data=array();
     	$data['category_name']=$request->category_name;
     	$data['category_slug']=Str::slug($request->category_name, '-');
+        $data['home_page']=$request->home_page;
     	if ($request->icon)
         {
     		  if (File::exists("files/category/".$request->old_icon))
@@ -87,15 +89,12 @@ class CategoryController extends Controller
               $photoname = uniqid()."-".$request->file('icon')->getClientOriginalName();
     	      Image::make($photo)->resize(32,32)->save('files/category/'.$photoname);
     	      $data['icon']=$photoname;
-    	      DB::table('categories')->where('id',$request->id)->update($data);
-    	      $notification=array('messege' => 'Category Update!', 'alert-type' => 'success');
-    	      return redirect()->back()->with($notification);
     	}else{
 		  $data['icon']=$request->old_icon;
-	      DB::table('categories')->where('id',$request->id)->update($data);
-	      $notification=array('messege' => 'Category Update!', 'alert-type' => 'success');
-	      return redirect()->back()->with($notification);
     	}
+        DB::table('categories')->where('id',$request->id)->update($data);
+        $notification=array('messege' => 'Category Update!', 'alert-type' => 'success');
+        return redirect()->back()->with($notification);
     }
 
         //get sub category mane product add korle category select korle oi categoryr sub category asbe
