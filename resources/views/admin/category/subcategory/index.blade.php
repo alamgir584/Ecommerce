@@ -117,22 +117,22 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-
-        <div id="modal_body">  </div>
+        <div id="modal_body"></div>
 
       </div>
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-
   <script type="text/javascript">
-    $('body').on('click','.edit', function(){
-      let subcat_id=$(this).data('id');
-      $.get("subcategory/edit/"+subcat_id, function(data){
-        $("#modal_body").html(data);
-      });
-    });
-  </script>
-  
+	$('body').on('click','.edit', function(){
+		let cat_id=$(this).data('id');
+		$.get("category/edit/"+cat_id, function(data){
+			 $("#modal_body").html(data);
+		});
+	});
+
+
+</script>
+
 @endsection

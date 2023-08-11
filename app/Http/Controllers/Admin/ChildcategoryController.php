@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Childcategory;
 use Illuminate\Support\Str;
+use DataTables;
 use DB;
 
 class ChildcategoryController extends Controller
@@ -16,49 +17,69 @@ class ChildcategoryController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
+    public function index(Request $request)
     {
 
-    	// Eloquent ORM
-        $data=Childcategory::all();
-        $subcategory=Subcategory::all();
-        $category=Category::all();
-        return view('admin.category.childcategory.index',compact('data','subcategory','category'));
+    	if ($request->ajax()) {
+    		$data=DB::table('childcategories')->leftJoin('categories','childcategories.category_id','categories.id')->leftJoin('subcategories','childcategories.subcategory_id','subcategories.id')
+    		->select('categories.category_name','subcategories.subcategory_name','childcategories.*')->get();
+
+    		return DataTables::of($data)
+    				->addIndexColumn()
+    				->addColumn('action', function($row){
+
+    					$actionbtn='<a href="#" class="btn btn-info btn-sm edit" data-id="'.$row->id.'" data-toggle="modal" data-target="#editModal" ><i class="fas fa-edit"></i></a>
+                      	<a href="'.route('childcategory.delete',[$row->id]).'" class="btn btn-danger btn-sm" id="delete"><i class="fas fa-trash"></i>
+                      	</a>';
+
+                       return $actionbtn; 	
+
+    				})
+    				->rawColumns(['action'])
+    				->make(true);		
+    	}
+
+        $category=DB::table('categories')->get();
+    	return view('admin.category.childcategory.index',compact('category'));
+
     }
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'childcategory_name' => 'required|max:55',
-        ]);
-        Childcategory::insert([
-            'category_id'=>$request->category_id,
-            'subcategory_id'=>$request->subcategory_id,
-            'childcategory_name'=>$request->childcategory_name,
-            'childcategory_slug'=>Str::slug($request->childcategory_name, '-'),
-        ]);
-        $notification=array('messege' =>'Child Category Inserted' ,'alert-type'=>'success' );
+        $cat=DB::table('subcategories')->where('id',$request->subcategory_id)->first();
+
+        $data=array();
+        $data['category_id']=$cat->category_id;
+        $data['subcategory_id']=$request->subcategory_id;
+        $data['childcategory_slug']=Str::slug($request->childcategory_name, '-');
+        $data['childcategory_name']=$request->childcategory_name;
+        DB::table('childcategories')->insert($data);
+        $notification=array('messege' => 'Child-Category Inserted!', 'alert-type' => 'success');
         return redirect()->back()->with($notification);
     }
     public function delete($id)
     {
-        Childcategory::destroy($id);
-        $notification=array('messege' =>'Child Category Deleted!' ,'alert-type'=>'success' );
+        DB::table('childcategories')->where('id',$id)->delete();
+        $notification=array('messege' => 'Child-Category Deleted!', 'alert-type' => 'success');
         return redirect()->back()->with($notification);
     }
     public function edit($id)
     {
-        $data=Childcategory::findorfail($id);
-        return response()->json($data);
+        $category=DB::table('categories')->get();
+        $data=DB::table('childcategories')->where('id',$id)->first();
+        return view('admin.category.childcategory.edit',compact('category','data'));
     }
+
     public function update(Request $request)
     {
-        $childcategory=Childcategory::where('id',$request->id)->first();
-        
-        $childcategory->update([
-            'childcategory_name'=>$request->childcategory_name,
-            'childcategory_slug'=>Str::slug($request->childcategory_name, '-'),
-        ]);
-        $notification=array('messege' =>'Child Category Updated!' ,'alert-type'=>'success' );
+        $cat=DB::table('subcategories')->where('id',$request->subcategory_id)->first();
+
+        $data=array();
+        $data['category_id']=$cat->category_id;
+        $data['subcategory_id']=$request->subcategory_id;
+        $data['childcategory_slug']=Str::slug($request->childcategory_name, '-');
+        $data['childcategory_name']=$request->childcategory_name;
+        DB::table('childcategories')->where('id',$request->id)->update($data);
+        $notification=array('messege' => 'Child-Category Updated!', 'alert-type' => 'success');
         return redirect()->back()->with($notification);
     }
 }
