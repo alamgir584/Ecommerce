@@ -14,9 +14,11 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('backend/dist/css/adminlte.min.css')}}">
   <link rel="stylesheet" type="text/css" href="{{ asset('backend/plugins/toastr/toastr.css') }}"> 
+  <!-- summernote -->
+  <link rel="stylesheet" href="{{asset('backend/plugins/summernote/summernote-bs4.css')}}">
 
-    <!-- DataTables -->
-    <link rel="stylesheet" href="{{asset('backend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{{asset('backend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{asset('backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{asset('backend/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
 
@@ -156,6 +158,17 @@
 <script src="{{asset('backend/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
 <script src="{{asset('backend/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
 <script src="{{asset('backend/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+<script src="//cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
+<script src="{{asset('backend/plugins/summernote/summernote-bs4.min.js')}}"></script>
+<script>
+$(function () {
+  // Summernote
+  $('.textarea').summernote()
+})
+</script>
 
 <script>
   $(function () {

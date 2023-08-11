@@ -31,7 +31,7 @@
                       <h3 class="card-title">All Sub Categories List</h3>
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body text-center">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>

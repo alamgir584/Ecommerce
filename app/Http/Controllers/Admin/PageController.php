@@ -35,7 +35,7 @@ class PageController extends Controller
         $data['page_description']=$request->page_description;
         DB::table('pages')->insert($data);
         $notification=array('messege' => 'Page Created!', 'alert-type' => 'success');
-        return redirect()->back()->with($notification);
+        return redirect()->route('page.index')->with($notification);
     }
         //page delete
         public function destroy($id)

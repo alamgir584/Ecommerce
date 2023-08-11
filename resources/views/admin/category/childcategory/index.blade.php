@@ -27,7 +27,7 @@
                 <h3 class="card-title">All Child-categories list here</h3>
               </div>
               <!-- /.card-header -->
-                <div class="card-body">
+                <div class="card-body text-center">
                   <table id="" class="table table-bordered table-striped table-sm ytable">
                     <thead>
                     <tr>

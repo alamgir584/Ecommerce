@@ -30,7 +30,7 @@
                                 <h3 class="card-title">All Brand List</h3>
                             </div>
                             <!-- /.card-header -->
-                            <div class="card-body">
+                            <div class="card-body text-center">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
