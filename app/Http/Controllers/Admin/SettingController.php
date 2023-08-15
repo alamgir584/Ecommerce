@@ -78,7 +78,7 @@ class SettingController extends Controller
             if ($request->logo) {  //jodi new logo die thake
                   $logo=$request->logo;
                   $logo_name=uniqid().'.'.$logo->getClientOriginalExtension();
-                  Image::make($logo)->resize(320,120)->save('files/setting/'.$logo_name);
+                  Image::make($logo)->resize(220,120)->save('files/setting/'.$logo_name);
                 $data['logo']='files/setting/'.$logo_name;
             }else{   //jodi new logo na dey
                 $data['logo']=$request->old_logo;

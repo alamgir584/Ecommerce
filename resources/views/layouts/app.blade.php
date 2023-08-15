@@ -81,9 +81,12 @@
 				<div class="row">
 
 					<!-- Logo -->
+					@php
+                      $setting=DB::table('settings')->first();
+                    @endphp
 					<div class="col-lg-2 col-sm-3 col-3 order-1">
 						<div class="logo_container">
-							<div class="logo"><a href="{{url('/')}}">Emart</a></div>
+							<div class="logo"><a href="{{url('/')}}"><img src="{{url($setting->logo)}}" alt=""></a></div>
 						</div>
 					</div>
 

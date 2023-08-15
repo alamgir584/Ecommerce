@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\coupon\Coupon;
 use DB;
+use DataTables;
 
 class CouponController extends Controller
 {
@@ -13,62 +14,68 @@ class CouponController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
+
+    public function index(Request $request)
     {
-            //elequent ORM
-            $coupon=Coupon::all();
-            return view('admin.offer.coupon.index',compact('coupon'));
+        if ($request->ajax()) {
+            $data=DB::table('coupons')->latest()->get();
+            return DataTables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+                        $actionbtn='<a href="#" class="btn btn-info btn-sm edit" data-id="'.$row->id.'" data-toggle="modal" data-target="#editModal" ><i class="fas fa-edit"></i></a>
+                        <a href="'.route('coupon.delete',[$row->id]).'"  class="btn btn-danger btn-sm" id="delete_coupon"><i class="fas fa-trash"></i>
+                        </a>';
+                       return $actionbtn;   
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);       
+        }
+
+        return view('admin.offer.coupon.index');
     }
-    public function create()
-    {
-       return view('admin.offer.coupon.create');
-    }
+
+    //store coupon 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'coupon_code' => 'required',
-            'coupon_amount' => 'required',
-            'valid_date'=>'required',
-            'status'=>'required',
-            'type' => 'required',
+         $data=array(
+            'coupon_code' =>$request->coupon_code,
+            'type' =>$request->type,
+            'coupon_amount' =>$request->coupon_amount,
+            'valid_date' =>$request->valid_date,
+            'status' =>$request->status,
+         );
+         DB::table('coupons')->insert($data);
+         return response()->json('Coupon Store!');
 
-        ]);
-        Coupon::insert([
-            'coupon_code'=>$request->coupon_code,
-            'coupon_amount'=>$request->coupon_amount,
-            'valid_date'=>$request->valid_date,
-            'status'=>$request->status,
-            'type'=>$request->type,
+    }
 
-        ]);
-        $notification=array('messege' =>'Coupon Inserted' ,'alert-type'=>'success' );
-        return redirect()->route('coupon.index')->with($notification);
-    }
-    public function delete($id)
-    {
-        Coupon::destroy($id);
-        $notification=array('messege' =>'Coupon Deleted!' ,'alert-type'=>'success' );
-        return redirect()->route('coupon.index')->with($notification);
-    }
+    //edit method
     public function edit($id)
     {
-        $data=Coupon::find($id);
+        $data=DB::table('coupons')->where('id',$id)->first();
         return view('admin.offer.coupon.edit',compact('data'));
     }
 
-    public function update(Request $request, $id)
+    //update method
+    public function update(Request $request)
     {
-        $coupon=Coupon::find($id);
-
-        $coupon->update([
-            'coupon_code'=>$request->coupon_code,
-            'coupon_amount'=>$request->coupon_amount,
-            'valid_date'=>$request->valid_date,
-            'status'=>$request->status,
-            'type'=>$request->type,
-
-        ]);
-        $notification=array('messege' =>'Coupon Updated!' ,'alert-type'=>'success' );
-        return redirect()->route('coupon.index')->with($notification);
+        $data=array(
+            'coupon_code' =>$request->coupon_code,
+            'type' =>$request->type,
+            'coupon_amount' =>$request->coupon_amount,
+            'valid_date' =>$request->valid_date,
+            'status' =>$request->status,
+        );
+        DB::table('coupons')->where('id',$request->id)->update($data);
+        return response()->json('Coupon Updated!');
     }
+
+    // delete coupon
+
+    public function destroy($id)
+    {
+        DB::table('coupons')->where('id',$id)->delete();
+        return response()->json('Coupon deleted!');
+    }
+
 }

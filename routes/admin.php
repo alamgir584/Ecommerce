@@ -94,19 +94,18 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
 
     });
 
-    //Coupon Routes
-        Route::group(['prefix'=>'coupon'], function(){
-            Route::get('/','CouponController@index')->name('coupon.index');
-            Route::get('/create','CouponController@create')->name('create.coupon');
-            Route::post('/store','CouponController@store')->name('store.coupon');
-            Route::get('/delete/{id}','CouponController@delete')->name('coupon.delete');
-            Route::get('/edit/{id}','CouponController@edit')->name('edit.coupon');
-            Route::post('/update/{id}','CouponController@update')->name('update.coupon');
-        });
+	   //Coupon Routes
+	   Route::group(['prefix'=>'coupon'], function(){
+		   Route::get('/','CouponController@index')->name('coupon.index');
+		   Route::post('/store','CouponController@store')->name('store.coupon');
+		   Route::delete('/delete/{id}','CouponController@destroy')->name('coupon.delete');
+		   Route::get('/edit/{id}','CouponController@edit');
+		   Route::post('/update','CouponController@update')->name('update.coupon');
+	   });
 
-            //Pickup Point Routes
+        //Pickup Point Routes
        Route::group(['prefix'=>'Pickup-point'], function(){
-        Route::get('/','PickupController@index')->name('pickup-point.index');
+         Route::get('/','PickupController@index')->name('pickup-point.index');
          Route::get('/create','PickupController@create')->name('create.pickup-point');
          Route::post('/store','PickupController@store')->name('store.pickup-point');
          Route::get('/delete/{id}','PickupController@delete')->name('pickup-point.delete');

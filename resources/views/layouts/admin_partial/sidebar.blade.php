@@ -2,9 +2,12 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4 slimScrollBar" style="overflow-y: scroll;">
     <!-- Brand Logo -->
     <a href="{{ route('admin.home')}}" class="brand-link">
+      {{-- <img src="{{url($setting->logo)}}" alt=""> --}}
       <span class="brand-text font-weight-light">Emart</span>
     </a>
-
+@php
+    $setting=DB::table('settings')->first();
+@endphp
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
