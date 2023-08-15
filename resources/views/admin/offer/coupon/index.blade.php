@@ -148,26 +148,6 @@
 		});
 	});
 
-  //store coupon ajax call
-  $('#add_form').submit(function(e){
-    e.preventDefault();
-    $('.loading').removeClass('d-none');
-    var url = $(this).attr('action');
-    var request =$(this).serialize();
-    $.ajax({
-      url:url,
-      type:'post',
-      async:false,
-      data:request,
-      success:function(data){
-        toastr.success(data);
-        $('#add_form')[0].reset();
-        $('.loading').addClass('d-none');
-        $('#addModal').modal('hide');
-        table.ajax.reload();
-      }
-    });
-  });
 
   $('body').on('click','.edit', function(){
     let id=$(this).data('id');
@@ -177,7 +157,7 @@
   });
 
    //store coupon ajax call
-  $('#edit_form').submit(function(e){
+  $('#add_form').submit(function(e){
     e.preventDefault();
     $('.loading').removeClass('d-none');
     var url = $(this).attr('action');
