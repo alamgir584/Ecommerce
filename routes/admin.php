@@ -122,6 +122,12 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
           Route::get('/delete/{id}','ProductController@delete')->name('product.delete');
           Route::get('/edit/{id}','ProductController@edit')->name('product.edit');
           Route::post('/update/{id}','ProductController@update')->name('product.update');
+          Route::get('/active-featured/{id}','ProductController@activefeatured');
+          Route::get('/not-featured/{id}','ProductController@notfeatured');
+          Route::get('/active-deal/{id}','ProductController@activedeal');
+          Route::get('/not-deal/{id}','ProductController@notdeal');
+          Route::get('/active-status/{id}','ProductController@activestatus');
+          Route::get('/not-status/{id}','ProductController@notstatus');
         
        });
      

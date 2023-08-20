@@ -37,7 +37,7 @@ class WarehouseController extends Controller
 
         ]);
         $notification=array('messege' =>'Warehouse Inserted' ,'alert-type'=>'success' );
-        return redirect()->back()->with($notification);
+        return redirect()->route('warehouse.index')->with($notification);
     }
     public function delete($id)
     {
@@ -60,6 +60,6 @@ class WarehouseController extends Controller
 
         ]);
         $notification=array('messege' =>'Warehouse Updated!' ,'alert-type'=>'success' );
-        return redirect()->back()->with($notification);
+        return redirect()->route('warehouse.index')->with($notification);
     }
 }
