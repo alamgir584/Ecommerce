@@ -97,7 +97,6 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
 <script type="text/javascript">
 	$(function products(){
 		table=$('.ytable').DataTable({
@@ -132,7 +131,7 @@
 	//deactive featured
 	$('body').on('click','.deactive_featurd', function(){
 	    var id=$(this).data('id');
-		var url = "{{ url('product/not-featured') }}/"+id;
+		var url = "{{ url('admin/product/not-featured') }}/"+id;
 		$.ajax({
 			url:url,
 			type:'get',
@@ -146,7 +145,7 @@
     //Active featured
 	$('body').on('click','.active_featurd', function(){
 	    var id=$(this).data('id');
-		var url = "{{ url('product/active-featured') }}/"+id;
+		var url = "{{ url('admin/product/active-featured') }}/"+id;
 		$.ajax({
 			url:url,
 			type:'get',
@@ -160,7 +159,7 @@
     //deactive today deal
 	$('body').on('click','.deactive_deal', function(){
 	   var id=$(this).data('id');
-		var url = "{{ url('product/not-deal') }}/"+id;
+		var url = "{{ url('admin/product/not-deal') }}/"+id;
 		$.ajax({
 			url:url,
 			type:'get',
@@ -174,7 +173,7 @@
     //Active today deal
 	$('body').on('click','.active_deal', function(){
 	    var id=$(this).data('id');
-		var url = "{{ url('product/active-deal') }}/"+id;
+		var url = "{{ url('admin/product/active-deal') }}/"+id;
 		$.ajax({
 			url:url,
 			type:'get',
@@ -188,7 +187,7 @@
     //deactive status
 	$('body').on('click','.deactive_status', function(){
 	    var id=$(this).data('id');
-		var url = "{{ url('product/not-status') }}/"+id;
+		var url = "{{ url('admin/product/not-status') }}/"+id;
 		$.ajax({
 			url:url,
 			type:'get',
@@ -202,7 +201,7 @@
     //Active status
 	$('body').on('click','.active_status', function(){
 	    var id=$(this).data('id');
-		var url = "{{ url('product/active-status') }}/"+id;
+		var url = "{{ url('admin/product/active-status') }}/"+id;
 		$.ajax({
 			url:url,
 			type:'get',
