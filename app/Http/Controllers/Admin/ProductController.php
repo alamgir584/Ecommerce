@@ -30,7 +30,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $imgurl='files/product';
+            $imgurl='/files/product';
 
             $product="";
               $query=DB::table('products')->leftJoin('categories','products.category_id','categories.id')
