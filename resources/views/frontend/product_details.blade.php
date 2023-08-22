@@ -3,7 +3,6 @@
 
 @include('layouts.front_partial.collaps_nav')
 
-
 <!-- Single Product -->
 <div class="single_product">
     <div class="container">
@@ -27,7 +26,7 @@
             <div class="col-lg-5 order-3">
                 <div class="product_description">
                     <div class="product_category">{{$product->category->category_name}}>{{$product->subcategory->subcategory_name}}</div>
-                    <div class="product_name">MacBook Air 13</div>
+                    <div class="product_name">{{$product->name}}</div>
                     <div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
                     <div class="product_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum. laoreet turpis, nec sollicitudin dolor cursus at. Maecenas aliquet, dolor a faucibus efficitur, nisi tellus cursus urna, eget dictum lacus turpis.</p></div>
                     <div class="order_info d-flex flex-row">
