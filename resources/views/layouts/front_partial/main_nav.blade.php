@@ -30,7 +30,7 @@ use App\Models\Childcategory;
 									<li class="hassubs">
 										<a href="#">{{$row->category_name}}<i class="fas fa-chevron-right"></i></a>
 										<ul>
-											@foreach ($subcategory as $row)
+									@foreach ($subcategory as $row)
                                     @php
                                         $childcategory=Childcategory::all()->where('subcategory_id',$row->id);
                                     @endphp
@@ -43,7 +43,7 @@ use App\Models\Childcategory;
 												
 												</ul>
 											</li>
-											@endforeach
+										@endforeach
 										</ul>
 									</li>
 								@endforeach
