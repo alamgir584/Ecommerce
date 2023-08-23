@@ -18,8 +18,8 @@
 							@if ($bannerproduct->discount_price==NULL)
 							<div class="viewd_price"><span>{{$setting->currency}}{{$bannerproduct->selling_price}}</span></div>
 							@else
-							<div class="viewd_price" ><span class="text-danger"><del>{{$setting->currency}}{{$bannerproduct->discount_price}} </del>
-							</span class="text-danger"> {{$setting->currency}}{{$bannerproduct->selling_price}}</div>
+							<div class="viewd_price" ><span class="text-danger"><del>{{$setting->currency}}{{$bannerproduct->selling_price}} </del>
+							</span class="text-danger"> {{$setting->currency}}{{$bannerproduct->discount_price}}</div>
 							@endif
 	
 							<div class="banner_product_name">{{$bannerproduct->Brandcategory->brand_name}}</div>
