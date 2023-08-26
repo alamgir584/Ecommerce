@@ -21,6 +21,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/plugins/slick-1.8.0/slick.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/main_styles.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/responsive.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('backend/plugins/toastr/toastr.css') }}"> 
 {{-- <link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/product_styles.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/product_responsive.css')}}"> --}}
 
@@ -36,7 +37,7 @@
 
 		<!-- Top Bar -->
 
-		<div class="top_bar">
+		{{-- <div class="top_bar">
 			<div class="container">
 				<div class="row">
 					<div class="col d-flex flex-row">
@@ -72,7 +73,93 @@
 					</div>
 				</div>
 			</div>		
-		</div>
+		</div> --}}
+		<div class="top_bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col d-flex flex-row">
+                        <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('frontend/images/phone.png')}}" alt=""></div>{{ $setting->phone_one }}</div>
+                        <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('frontend/images/mail.png')}}" alt=""></div><a href="mailto:{{ $setting->main_email }}">{{ $setting->main_email }}</a></div>
+                        <div class="top_bar_content ml-auto">
+
+                            @if(Auth::check())
+                            <div class="top_bar_menu">
+                                <ul class="standard_dropdown top_bar_dropdown" >
+                                    <li>
+                                        <a href="#">{{ Auth::user()->name }}<i class="fas fa-chevron-down"></i></a>
+                                        <ul style="width:200px;">
+                                            <li><a href="{{ route('home') }}">Profile</a></li>
+											<li><a href="{{ route('home') }}">Setting</a></li>
+											<li><a href="{{ route('home') }}">Order List</a></li>
+                                            <li><a href="{{ route('customer.logout') }}">Logout</a></li>
+                                        </ul>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            @endif
+
+                            @guest
+                            <div class="top_bar_menu">
+                                <ul class="standard_dropdown top_bar_dropdown">
+                                    <li>
+                                        <a href="#">Login<i class="fas fa-chevron-down"></i></a>
+                                        <ul style="width:300px; padding:10px;">
+                                           <div>
+                                            <strong>login your account</strong><br>
+                                            <br>
+                                               <form action="{{ route('login') }}" method="post">
+                                                @csrf
+                                                   <div class="form-group">
+                                                       <label>Email Address</label>
+                                                       <input type="email" class="form-control" name="email" autocomplete="off" required="">
+                                                   </div>
+                                                   <div class="form-group">
+                                                       <label>Password</label>
+                                                       <input type="password" class="form-control" name="password" required="">
+                                                   </div>
+
+
+                                                   {{-- <div class="form-group row">
+                                                       <div class="offset-md-2">
+                                                           <div class="form-check">
+                                                               <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                                               <label class="form-check-label" for="remember">
+                                                                   {{ __('Remember Me') }}
+                                                               </label>
+                                                           </div>
+                                                       </div>
+                                                   </div> --}}
+
+
+                                                   <div class="form-group">
+                                                       <button type="submit" class="btn btn-sm btn-info">login</button>
+                                                   </div>
+                                               </form>
+
+
+                                               {{-- <div class="form-group">
+                                                 <a href="{{ route('social.oauth', 'google') }}" class="btn btn-danger btn-sm btn-block text-white">Login WIth Google</a>
+                                                </div> --}}
+
+
+                                           </div>
+                                        </ul>
+                                    </li>
+
+                                    <li>
+                                    <a href="{{ route('register') }}">Register</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            @endguest
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 		<!-- Header Main -->
 
@@ -119,15 +206,19 @@
 					</div>
 
 					<!-- Wishlist -->
-					<div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
-						<div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
-							<div class="wishlist d-flex flex-row align-items-center justify-content-end">
-								<div class="wishlist_icon"><img src="{{asset('frontend/images/heart.png')}}" alt=""></div>
-								<div class="wishlist_content">
-									<div class="wishlist_text"><a href="#">Wishlist</a></div>
-									<div class="wishlist_count">115</div>
-								</div>
-							</div>
+                    @php
+                        $wishlist=DB::table('wishlists')->where('user_id',Auth::id())->count();
+                    @endphp
+                    <!-- Wishlist -->
+                    <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
+                        <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+                            <div class="wishlist d-flex flex-row align-items-center justify-content-end">
+                                <div class="wishlist_icon"><img src="{{ asset('/frontend') }}/images/heart.png" alt=""></div>
+                                <div class="wishlist_content">
+                                    <div class="wishlist_text"><a href="#">Wishlist</a></div>
+                                    <div class="wishlist_count">{{ $wishlist }}</div>
+                                </div>
+                            </div>
 
 							<!-- Cart -->
 							<div class="cart">
@@ -269,6 +360,27 @@ Copyright &copy;<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd
 <script src="{{asset('frontend/plugins/easing/easing.js')}}"></script>
 <script src="{{asset('frontend/js/custom.js')}}"></script>
 <script src="{{asset('frontend/js/product_custom.js')}}"></script>
+<script type="text/javascript" src="{{ asset('backend/plugins/toastr/toastr.min.js') }}"></script>
+
+<script>
+	@if(Session::has('messege'))
+	  var type="{{Session::get('alert-type','info')}}"
+	  switch(type){
+		  case 'info':
+			   toastr.info("{{ Session::get('messege') }}");
+			   break;
+		  case 'success':
+			  toastr.success("{{ Session::get('messege') }}");
+			  break;
+		  case 'warning':
+			 toastr.warning("{{ Session::get('messege') }}");
+			  break;
+		  case 'error':
+			  toastr.error("{{ Session::get('messege') }}");
+			  break;
+			}
+	@endif
+  </script>
 
 
 <!-- Global site tag (gtag.js) - Google Analytics -->

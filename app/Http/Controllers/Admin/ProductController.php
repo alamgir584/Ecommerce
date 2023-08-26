@@ -14,8 +14,8 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Childcategory;
 use App\Models\Brand;
-use App\Models\pickup\Pickup;
-use App\Models\setting\Warehouse;
+use App\Models\Pickup;
+use App\Models\Warehouse;
 use App\Models\Product;
 
 
