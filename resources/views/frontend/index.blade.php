@@ -113,7 +113,7 @@
 							<div class="tabs">
 								<ul class="clearfix">
 									<li class="active">Featured</li>
-									<li>On Sale</li>
+									<li>Most Popular</li>
 								</ul>
 								<div class="tabs_line"><span></span></div>
 							</div>
@@ -163,31 +163,41 @@
 
 							<div class="product_panel panel">
 								<div class="featured_slider slider">
+									@foreach($popular_product as $row)
 
 									<!-- Slider Item -->
 									<div class="featured_slider_item">
 										<div class="border_active"></div>
 										<div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
-											<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="{{asset('frontend/images/featured_1.png')}}" alt=""></div>
+											<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="{{asset('files/product/'.$row->thumbnail)}}" alt="{{$row->name}}" height="100%" width="80%"></div>
 											<div class="product_content">
-												<div class="product_price discount">$225<span>$300</span></div>
-												<div class="product_name"><div><a href="product.html">Huawei MediaPad...</a></div></div>
+												<div class="product_price discount">
+													@if ($row->discount_price==NULL)
+													<div class="viewd_price"><span>{{$setting->currency}}{{$row->selling_price}}</span></div>
+													@else
+													<div class="viewd_price" ><span class="text-danger"><del>{{$setting->currency}}{{$row->selling_price}} </del>
+													</span class="text-danger"> {{$setting->currency}}{{$row->discount_price}}</div>
+													@endif
+												</div>
+												<div class="product_name"><div><a href="{{route('product.details',$row->slug)}}">{{substr($row->name,0,20)}}..</a></div></div>
 												<div class="product_extras">
 													<div class="product_color">
-														<input type="radio" checked name="product_color" style="background:#b19c83">
-														<input type="radio" name="product_color" style="background:#000000">
-														<input type="radio" name="product_color" style="background:#999999">
+														<a href="#" data-toggle="modal" data-target="#examoleModalCenter">Quick view</a>
 													</div>
 													<button class="product_cart_button">Add to Cart</button>
 												</div>
 											</div>
-											<div class="product_fav"><i class="fas fa-heart"></i></div>
+											<a href="{{ route('add.wishlist',$row->id)}}">
+											    <div class="product_fav"><i class="fas fa-heart"></i>
+								                </div>
+										    </a>
 											<ul class="product_marks">
 												<li class="product_mark product_discount">-25%</li>
 												<li class="product_mark product_new">new</li>
 											</ul>
 										</div>
 									</div>
+									@endforeach
 								</div>
 							<div class="featured_slider_dots_cover"></div>
 						</div>
