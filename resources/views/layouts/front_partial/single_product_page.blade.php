@@ -69,7 +69,7 @@
 				<!-- Description -->
 				<div class="col-lg-4 order-3">
 					<div class="product_description">
-						<div class="product_category">{{$product->Category->category_name}}->{{$product->Subcategory->subcategory_name}}->{{$product->Childcategory->childcategory_name}}</div>
+						<div class="product_category">{{$product->Category->category_name}}-> {{$product->Subcategory->subcategory_name}}</div>
 						<div class="product_name" style="font-size: 20px">{{$product->name}}</div>
                         <div class="brand_name">Brand: {{$product->Brandcategory->brand_name}}</div>
 						<div class="stock">Stock: {{$product->stock_quantity}}</div>

@@ -37,6 +37,8 @@ class Product extends Model
         'featured',
         'today_deal',
         'product_slider',
+        'product_views',
+        'trendy',
         'status',
         'admin_id',
         'flash_deal_id',

@@ -41,7 +41,7 @@ return new class extends Migration
             $table->integer('product_slider')->nullable();
             $table->integer('status')->nullable();
             $table->integer('trendy')->nullable();
-            $table->string('product_views')->nullable();
+            $table->integer('product_views');
             $table->integer('flash_deal_id')->nullable();
             $table->integer('cash_on_delivery')->nullable();
             $table->integer('admin_id')->nullable();

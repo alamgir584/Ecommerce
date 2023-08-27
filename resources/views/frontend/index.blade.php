@@ -150,8 +150,7 @@
 								                </div>
 										    </a>
 											<ul class="product_marks">
-												<li class="product_mark product_discount">-25%</li>
-												<li class="product_mark product_new">new</li>
+												<li class="product_mark product_discount">new</li>
 											</ul>
 										</div>
 									</div>
