@@ -159,7 +159,7 @@
 								<div class="featured_slider_dots_cover"></div>
 							</div>
 
-							<!-- Product Panel -->
+							<!-- most popular Product Panel -->
 
 							<div class="product_panel panel">
 								<div class="featured_slider slider">
@@ -2347,10 +2347,10 @@
 
 					<div class="advert d-flex flex-row align-items-center justify-content-start">
 						<div class="advert_content">
-							<div class="advert_title"><a href="#">Trends 2018</a></div>
-							<div class="advert_text">Lorem ipsum dolor sit amet, consectetur adipiscing Donec et.</div>
+							<div class="advert_title"><a href="#">Trends Product</a></div>
+							<div class="advert_text">This year trendy product for you</div>
 						</div>
-						<div class="ml-auto"><div class="advert_image"><img src="images/adv_1.png" alt=""></div></div>
+						<div class="ml-auto"><div class="advert_image"><img src="{{asset('frontend/images/adv_1.png')}}" alt=""></div></div>
 					</div>
 				</div>
 
@@ -2364,7 +2364,7 @@
 							<div class="advert_title_2"><a href="#">Sale -45%</a></div>
 							<div class="advert_text">Lorem ipsum dolor sit amet, consectetur.</div>
 						</div>
-						<div class="ml-auto"><div class="advert_image"><img src="images/adv_2.png" alt=""></div></div>
+						<div class="ml-auto"><div class="advert_image"><img src="{{asset('frontend/images/adv_2.png')}}" alt=""></div></div>
 					</div>
 				</div>
 
@@ -2377,7 +2377,7 @@
 							<div class="advert_title"><a href="#">Trends 2018</a></div>
 							<div class="advert_text">Lorem ipsum dolor sit amet, consectetur.</div>
 						</div>
-						<div class="ml-auto"><div class="advert_image"><img src="images/adv_3.png" alt=""></div></div>
+						<div class="ml-auto"><div class="advert_image"><img src="{{asset('frontend/images/adv_3.png')}}" alt=""></div></div>
 					</div>
 				</div>
 
@@ -2396,8 +2396,8 @@
 				<!-- Trends Content -->
 				<div class="col-lg-3">
 					<div class="trends_container">
-						<h2 class="trends_title">Trends 2018</h2>
-						<div class="trends_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing Donec et.</p></div>
+						<h2 class="trends_title">Trendy Product</h2>
+						<div class="trends_text"><p>This year trendy product</p></div>
 						<div class="trends_slider_nav">
 							<div class="trends_prev trends_nav"><i class="fas fa-angle-left ml-auto"></i></div>
 							<div class="trends_next trends_nav"><i class="fas fa-angle-right ml-auto"></i></div>
@@ -2414,123 +2414,39 @@
 						<div class="owl-carousel owl-theme trends_slider">
 
 							<!-- Trends Slider Item -->
+							@foreach ($trendy_product as $row)							
 							<div class="owl-item">
 								<div class="trends_item is_new">
-									<div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="{{asset('frontend/images/trends_1.jpg')}}" alt=""></div>
+									<div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="{{asset('files/product/'.$row->thumbnail)}}" alt="{{$row->name}}"></div>
 									<div class="trends_content">
-										<div class="trends_category"><a href="#">Smartphones</a></div>
+										<div class="trends_category"><a href="#">{{$row->Category->category_name}}</a></div>
 										<div class="trends_info clearfix">
-											<div class="trends_name"><a href="product.html">Jump White</a></div>
-											<div class="trends_price">$379</div>
+											<div class="trends_name"><a href="{{route('product.details',$row->slug)}}">{{substr($row->name,0,20)}}..</a></div>
+											<div class="trends_price">
+												@if ($row->discount_price==NULL)
+												<div class="viewd_price"><span>{{$setting->currency}}{{$row->selling_price}}</span></div>
+												@else
+												<div class="viewd_price" ><span class="text-danger"><del>{{$setting->currency}}{{$row->selling_price}} </del>
+												</span class="text-danger"> {{$setting->currency}}{{$row->discount_price}}</div>
+												@endif
+											</div>
 										</div>
 									</div>
 									<ul class="trends_marks">
 										<li class="trends_mark trends_discount">-25%</li>
-										<li class="trends_mark trends_new">new</li>
+										<a href="#" data-toggle="modal" data-target="#examoleModalCenter" class="trends_mark trends_new">
+											<i class="fa fa-eye"></i>
+										</a>
 									</ul>
+									<a href="{{ route('add.wishlist',$row->id)}}">
 									<div class="trends_fav"><i class="fas fa-heart"></i></div>
+								</a>
 								</div>
 							</div>
-
-							<!-- Trends Slider Item -->
-							<div class="owl-item">
-								<div class="trends_item">
-									<div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="{{asset('frontend/images/trends_2.jpg')}}" alt=""></div>
-									<div class="trends_content">
-										<div class="trends_category"><a href="#">Smartphones</a></div>
-										<div class="trends_info clearfix">
-											<div class="trends_name"><a href="product.html">Samsung Charm...</a></div>
-											<div class="trends_price">$379</div>
-										</div>
-									</div>
-									<ul class="trends_marks">
-										<li class="trends_mark trends_discount">-25%</li>
-										<li class="trends_mark trends_new">new</li>
-									</ul>
-									<div class="trends_fav"><i class="fas fa-heart"></i></div>
-								</div>
-							</div>
-
-							<!-- Trends Slider Item -->
-							<div class="owl-item">
-								<div class="trends_item is_new">
-									<div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="{{asset('frontend/images/trends_3.jpg')}}" alt=""></div>
-									<div class="trends_content">
-										<div class="trends_category"><a href="#">Smartphones</a></div>
-										<div class="trends_info clearfix">
-											<div class="trends_name"><a href="product.html">DJI Phantom 3...</a></div>
-											<div class="trends_price">$379</div>
-										</div>
-									</div>
-									<ul class="trends_marks">
-										<li class="trends_mark trends_discount">-25%</li>
-										<li class="trends_mark trends_new">new</li>
-									</ul>
-									<div class="trends_fav"><i class="fas fa-heart"></i></div>
-								</div>
-							</div>
-
-							<!-- Trends Slider Item -->
-							<div class="owl-item">
-								<div class="trends_item is_new">
-									<div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="{{asset('frontend/images/trends_1.jpg')}}" alt=""></div>
-									<div class="trends_content">
-										<div class="trends_category"><a href="#">Smartphones</a></div>
-										<div class="trends_info clearfix">
-											<div class="trends_name"><a href="product.html">Jump White</a></div>
-											<div class="trends_price">$379</div>
-										</div>
-									</div>
-									<ul class="trends_marks">
-										<li class="trends_mark trends_discount">-25%</li>
-										<li class="trends_mark trends_new">new</li>
-									</ul>
-									<div class="trends_fav"><i class="fas fa-heart"></i></div>
-								</div>
-							</div>
-
-							<!-- Trends Slider Item -->
-							<div class="owl-item">
-								<div class="trends_item">
-									<div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="{{asset('frontend/images/trends_2.jpg')}}" alt=""></div>
-									<div class="trends_content">
-										<div class="trends_category"><a href="#">Smartphones</a></div>
-										<div class="trends_info clearfix">
-											<div class="trends_name"><a href="product.html">Jump White</a></div>
-											<div class="trends_price">$379</div>
-										</div>
-									</div>
-									<ul class="trends_marks">
-										<li class="trends_mark trends_discount">-25%</li>
-										<li class="trends_mark trends_new">new</li>
-									</ul>
-									<div class="trends_fav"><i class="fas fa-heart"></i></div>
-								</div>
-							</div>
-
-							<!-- Trends Slider Item -->
-							<div class="owl-item">
-								<div class="trends_item is_new">
-									<div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="{{asset('frontend/images/trends_3.jpg')}}" alt=""></div>
-									<div class="trends_content">
-										<div class="trends_category"><a href="#">Smartphones</a></div>
-										<div class="trends_info clearfix">
-											<div class="trends_name"><a href="product.html">Jump White</a></div>
-											<div class="trends_price">$379</div>
-										</div>
-									</div>
-									<ul class="trends_marks">
-										<li class="trends_mark trends_discount">-25%</li>
-										<li class="trends_mark trends_new">new</li>
-									</ul>
-									<div class="trends_fav"><i class="fas fa-heart"></i></div>
-								</div>
-							</div>
-
+							@endforeach
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
@@ -2838,7 +2754,7 @@
 								<div class="row">
 									<div class="col-lg-4">
 										<div class="">
-											<img src="{{asset('frontend/images/single_1.jpg')}}" height="100%" width="100%">
+											<img src="{{asset('frontend/images/popular_1.png')}}" alt="" height="100%" width="100%">
 										</div>
 									</div>
 									<div class="col-lg-8">
