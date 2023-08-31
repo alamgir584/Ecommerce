@@ -2690,20 +2690,14 @@
 				<div class="col">
 					<div class="brands_slider_container">
 						
-						<!-- Brands Slider -->
-
+						<!-- Brands Slider -->	
+						
 						<div class="owl-carousel owl-theme brands_slider">
-							
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_1.jpg')}}" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_2.jpg')}}" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_3.jpg')}}" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_4.jpg')}}" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_5.jpg')}}" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_6.jpg')}}" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_7.jpg')}}" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('frontend/images/brands_8.jpg')}}" alt=""></div></div>
-
+							@foreach ($brand as $row)
+							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{asset('files/brand/'.$row->brand_logo)}}" alt="{{$row->brand_name}}" width="60px" height="60px"></div></div>
+							@endforeach
 						</div>
+						
 						
 						<!-- Brands Slider Navigation -->
 						<div class="brands_nav brands_prev"><i class="fas fa-chevron-left"></i></div>
