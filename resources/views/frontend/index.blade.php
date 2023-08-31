@@ -140,7 +140,7 @@
 												<div class="product_name"><div><a href="{{route('product.details',$row->slug)}}">{{substr($row->name,0,20)}}..</a></div></div>
 												<div class="product_extras">
 													<div class="product_color">
-                                                       <a href="#" data-toggle="modal" data-target="#examoleModalCenter">Quick view</a>
+														<a href="#" class="quick_view" id="{{ $row->id }}" data-toggle="modal" data-target="#exampleModalCenter">quick view</a>
 													</div>
 													<button class="product_cart_button">Add to Cart</button>
 												</div>
@@ -182,7 +182,7 @@
 												<div class="product_name"><div><a href="{{route('product.details',$row->slug)}}">{{substr($row->name,0,20)}}..</a></div></div>
 												<div class="product_extras">
 													<div class="product_color">
-														<a href="#" data-toggle="modal" data-target="#examoleModalCenter">Quick view</a>
+														<a href="#" class="quick_view" id="{{ $row->id }}" data-toggle="modal" data-target="#exampleModalCenter">quick view</a>
 													</div>
 													<button class="product_cart_button">Add to Cart</button>
 												</div>
@@ -2434,7 +2434,7 @@
 									</div>
 									<ul class="trends_marks">
 										<li class="trends_mark trends_discount">-25%</li>
-										<a href="#" data-toggle="modal" data-target="#examoleModalCenter" class="trends_mark trends_new">
+										<a href="#" class="quick_view" id="{{ $row->id }}" data-toggle="modal" data-target="#exampleModalCenter" class="trends_mark trends_new">
 											<i class="fa fa-eye"></i>
 										</a>
 									</ul>
@@ -2734,67 +2734,34 @@
 		</div>
 	</div>
 
-	<div class="modal-fade" id="examoleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal_title" id="exampleModalLongTitle"></h5>
-					<button type="button" class="close" data-dismis="modal" aria-lebel="Close">
-						<span aria-hidden="true" >&times;</span>
-					</button>
-					<div class="modal-body">
-						<div class="modal-body">
-							<div class="container-fluid">
-								<div class="row">
-									<div class="col-lg-4">
-										<div class="">
-											<img src="{{asset('frontend/images/popular_1.png')}}" alt="" height="100%" width="100%">
-										</div>
-									</div>
-									<div class="col-lg-8">
-										<h3>This is the main product title</h3>
-										<p>Categoryname > subcategoryname</p>
-										<p>Brand: brandname</p>
-										<div class="">Price:$120</div><br>
-										<div class="order_info d-flex flex-row">
-											<form action="#">
-												<div class="form-group">
-													<div class="row">
-														<div class="col-lg-5">
-															<label class="ml-2">Pick Size:</label>
-															<select class="custom-select form-control-sm" name="size" style="min-width: 120px">
-																<option value="">Example</option>
-																<option value="">Example</option>
-																<option value="">Example</option>
-															</select>
-														</div>
-														<div class="col-lg-5">
-															<label class="ml-2">Pick Color:</label>
-															<select class="custom-select form-control-sm" name="size" style="min-width: 120px">
-																<option value="">Example</option>
-																<option value="">Example</option>
-																<option value="">Example</option>
-															</select>
-														</div>
-													</div>
-												</div>
-												<div class="button_container">
-													<div class="input-group mb-3">
-														<div class="input-group-prepend">
-															<button class="btn btn-sm btn-outline-info" type="submit">Add to cart</button>
-														</div>
-													</div>
-												</div>
-											</form>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog  modal-lg  modal-dialog-centered" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
 			</div>
+			<div class="modal-body" id="quick_view_body">
+		 
+			</div>
+		  </div>
 		</div>
+	  </div>
 
-	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		//ajax request send for collect childcategory
+		 $(document).on('click', '.quick_view', function(){ 
+		  var id = $(this).attr("id");
+		  $.ajax({
+			   url: "{{ url("/product-quick-view/") }}/"+id,
+			   type: 'get',
+			   success: function(data) {
+					$("#quick_view_body").html(data);
+			   }
+			});
+		 });
+	</script>
 @endsection()

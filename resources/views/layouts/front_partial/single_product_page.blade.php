@@ -72,7 +72,7 @@
 						<div class="product_category">{{$product->Category->category_name}}-> {{$product->Subcategory->subcategory_name}}</div>
 						<div class="product_name" style="font-size: 20px">{{$product->name}}</div>
                         <div class="brand_name">Brand: {{$product->Brandcategory->brand_name}}</div>
-						<div class="stock">Stock: {{$product->stock_quantity}}</div>
+						<div class="stock">Stock: <p>Stock: @if($product->stock_quantity<1) <span class="badge badge-danger">Stock Out</span> @else <span class="badge badge-success">Stock Available</span> @endif </p></div>
 						<div class="unit">Unit: {{$product->unit}}</div>
 						{{-- average review star --}}
                         <div>
@@ -124,7 +124,7 @@
                                 @isset($product->size)
                                 <div class="col-lg-6">
                                     <label>Pick Size: </label>
-                                    <select class="custom-select form-control-sm" name="size" >
+                                    <select class="custom-select form-control-sm" style="min-width: 120px; margin-left: -4px;">
                                         @foreach($sizes as $size)
                                            <option value="{{ $size }}">{{ $size }}</option>
                                         @endforeach
@@ -135,7 +135,7 @@
                                 @isset($product->color)
                                 <div class="col-lg-6">
                                     <label>Pick Color: </label>
-                                    <select class="custom-select form-control-sm" name="color" >
+                                    <select class="custom-select form-control-sm" name="color" style="min-width: 120px;">
                                         @foreach($color as $row)
                                            <option value="{{ $row }}">{{ $row }}</option>
                                         @endforeach

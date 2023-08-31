@@ -39,8 +39,14 @@ class IndexController extends Controller
          $review=Review::where('product_id',$product->id)->orderBy('id','DESC')->take(6)->get();
 
 
-        return view('frontend.product_details', compact('category','brand','product','related_product','review'));
+        return view('frontend.product.product_details', compact('category','brand','product','related_product','review'));
     }
+        //product quick view
+        public function ProductQuickView($id)
+        {
+            $product=Product::where('id',$id)->first();
+            return view('frontend.product.quick_view',compact('product'));
+        }
 }
     
 
