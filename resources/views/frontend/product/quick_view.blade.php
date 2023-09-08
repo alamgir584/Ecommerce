@@ -41,7 +41,7 @@ $sizes=explode(',',$product->size);
                                 @isset($product->color)
                                 <div class="col-lg-4">
                                     <label>Pick Color: </label>
-                                    <select class="custom-select form-control-sm" name="color" style="min-width: 120px;">
+                                    <select class="custom-select form-control-sm" name="color" style="min-width: 120px;margin-left: -4px;">
                                         @foreach($color as $row)
                                            <option value="{{ $row }}">{{ $row }}</option>
                                         @endforeach
@@ -53,11 +53,6 @@ $sizes=explode(',',$product->size);
                                     <input type="number" min="1" max="1000" name="qty" class="form-control-sm" value="1" style="min-width: 120px;">
                                 </div>
                             </div>
-                            {{-- <div class="col-lg-4" style="margin-left: -5px;">
-                                <label>Quantity: </label>
-                                  <input type="number" min="1" max="100" name="qty" class="form-control-sm" value="1" style="min-width: 120px; margin-left: -4px;">
-                              </div> --}}
-
                         </div>
                     </div>
                         <div class="button_container">
