@@ -106,8 +106,6 @@
           <button type="submit" class="btn btn-primary">Submit</button>
         </div>
       </form>
-
-
       </div>
     </div>
   </div>
@@ -151,7 +149,7 @@
               </div> --}}
               {{-- <div class="form-group">
                 <label for="category_name">Show on Homepage</label>
-               <select class="form-control" name="home_page">
+               <select class="form-control" name="home_page" id="home_page">
                  <option value="1" @if($data->home_page==1) selected @endif>Yes</option>
                  <option value="0" @if($data->home_page==0) selected @endif>No</option>
                </select>

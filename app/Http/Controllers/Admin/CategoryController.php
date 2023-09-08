@@ -18,8 +18,8 @@ class CategoryController extends Controller
     }
     public function index()
     {
-        //$data=DB::table('categories')->get();//query builder
-        $data=Category::all(); //elequent ORM
+        $data=DB::table('categories')->get();//query builder
+        //$data=Category::all(); //elequent ORM
         return view ('admin.category.category.index',compact('data'));
 
     }
