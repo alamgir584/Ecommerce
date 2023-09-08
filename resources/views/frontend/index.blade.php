@@ -29,7 +29,7 @@
 			</div>
 		</div>
 	<!-- Characteristics -->
-	<div class="characteristics">
+	{{-- <div class="characteristics">
 		<div class="container">
 			<div class="row">
 				<!-- Char. Item -->
@@ -44,7 +44,23 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --}}
+	<div class="characteristics">
+        <div class="container">
+            <div class="row">
+               @foreach($brand as $row) 
+                <div class="col-lg-1 col-md-6 char_col" style="border:1px solid grey; padding:5px;">
+                    <div class="brands_item">
+                       <a href="#" title="{{ $row->brand_name }}"> 
+                        <img src="{{asset('files/brand/'.$row->brand_logo)}}" alt="{{$row->brand_name}}" height="100%" width="100%"> 
+                       </a>
+                    </div>
+                </div>
+               @endforeach
+            </div>
+        </div>
+    </div>
+
 	<!-- Deals of the week -->
 	<div class="deals_featured">
 		<div class="container">
