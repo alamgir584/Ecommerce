@@ -16,7 +16,8 @@ $sizes=explode(',',$product->size);
                 <p>Category: {{$product->Category->category_name}}-> {{$product->Subcategory->subcategory_name}}</p>
                 <p>Brand: {{$product->Brandcategory->brand_name}}</p>
                 <p>Stock: @if($product->stock_quantity<1) <span class="badge badge-danger">Stock Out</span> @else <span class="badge badge-success">Stock Available</span> @endif </p>
-                <div class="">							@if ($product->discount_price==NULL)
+                <div class="">
+                    @if ($product->discount_price==NULL)
                     <div class="" style="margin-top: 10px">Price:{{$setting->currency}}{{$product->selling_price}}</div>
                     @else
                     <div class="" >Price:<del class="text-danger">{{$setting->currency}}{{$product->selling_price}} </del class="text-danger">{{$setting->currency}}{{$product->discount_price}}</div>
@@ -27,7 +28,7 @@ $sizes=explode(',',$product->size);
                         <div class="form-group">
                             <div class="row">
                                 @isset($product->size)
-                                <div class="col-lg-5">
+                                <div class="col-lg-4">
                                     <label>Pick Size: </label>
                                     <select class="custom-select form-control-sm" style="min-width: 120px; margin-left: -4px;">
                                         @foreach($sizes as $size)
@@ -38,7 +39,7 @@ $sizes=explode(',',$product->size);
                                 @endisset
 
                                 @isset($product->color)
-                                <div class="col-lg-5">
+                                <div class="col-lg-4">
                                     <label>Pick Color: </label>
                                     <select class="custom-select form-control-sm" name="color" style="min-width: 120px;">
                                         @foreach($color as $row)
@@ -47,9 +48,18 @@ $sizes=explode(',',$product->size);
                                     </select>
                                 </div>
                                 @endisset
+                                <div class="col-lg-4">
+                                    <label>Quantity: </label>
+                                    <input type="number" min="1" max="1000" name="qty" class="form-control-sm" value="1" style="min-width: 120px;">
+                                </div>
                             </div>
+                            {{-- <div class="col-lg-4" style="margin-left: -5px;">
+                                <label>Quantity: </label>
+                                  <input type="number" min="1" max="100" name="qty" class="form-control-sm" value="1" style="min-width: 120px; margin-left: -4px;">
+                              </div> --}}
+
                         </div>
-                        </div>
+                    </div>
                         <div class="button_container">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
