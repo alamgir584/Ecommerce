@@ -72,21 +72,33 @@
 						<div class="deals_slider_container">	
 							<!-- Deals Slider -->
 							<div class="owl-carousel owl-theme deals_slider">	
+								@foreach ($todaydeal  as $row)
+									
+								
 								<!-- Deals Item -->
 								<div class="owl-item deals_item">
-									<div class="deals_image"><img src="{{asset('frontend/images/deals.png')}}" alt=""></div>
+									<div class="deals_image"><img src="{{ asset('files/product/'.$row->thumbnail) }}" alt="{{ $row->name }}"></div>
 									<div class="deals_content">
 										<div class="deals_info_line d-flex flex-row justify-content-start">
-											<div class="deals_item_category"><a href="#">Headphones</a></div>
-											<div class="deals_item_price_a ml-auto">$300</div>
+											<div class="deals_item_category"><a href="#">{{ $row->subcategory->subcategory_name }}</a></div><br><br>
+											<div class="deals_item_price_a ml-auto">
+											
+												@if ($row->discount_price==NULL)
+												<div class="viewd_price"><span>{{$setting->currency}}{{$row->selling_price}}</span></div>
+												@else
+												<div class="viewd_price" ><span class="text-danger"><del>{{$setting->currency}}{{$row->selling_price}} </del>
+												</span class="text-danger"> {{$setting->currency}}{{$row->discount_price}}</div>
+												@endif
+											
+											</div>
 										</div>
 										<div class="deals_info_line d-flex flex-row justify-content-start">
-											<div class="deals_item_name">Beoplay H7</div>
-											<div class="deals_item_price ml-auto">$225</div>
+											<div class="deals_item_name"><a href="{{route('product.details',$row->slug)}}">{{substr($row->name,0,20)}}..</a></div>
+											<div class="deals_item_price ml-auto"></div>
 										</div>
 										<div class="available">
 											<div class="available_line d-flex flex-row justify-content-start">
-												<div class="available_title">Available: <span>6</span></div>
+												<div class="available_title">Available: <span>{{ $row->stock_quantity }}</span></div>
 												<div class="sold_title ml-auto">Already sold: <span>28</span></div>
 											</div>
 											<div class="available_bar"><span style="width:17%"></span></div>
@@ -115,6 +127,7 @@
 										</div>
 									</div>
 								</div>
+								@endforeach
 							</div>
 						</div>
 					<div class="deals_slider_nav_container">
