@@ -24,7 +24,15 @@ $sizes=explode(',',$product->size);
                     @endif
                 </div><br>
                 <div class="order_info d-flex flex-row">
-                    <form action="#">
+                    <form action="{{ route('add.to.cart.quickview') }}" method="post" id="add_cart_form" >
+                        @csrf
+                      {{-- cart add details --}}
+                      <input type="hidden" name="id" value="{{$product->id}}">
+                      @if($product->discount_price==NULL)
+                      <input type="hidden" name="price" value="{{$product->selling_price}}">
+                      @else
+                      <input type="hidden" name="price" value="{{$product->discount_price}}">
+                      @endif
                         <div class="form-group">
                             <div class="row">
                                 @isset($product->size)
@@ -54,17 +62,17 @@ $sizes=explode(',',$product->size);
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    
                         <div class="button_container">
                             <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    @if ($product->stock_quantity<1)
-                                    <span class="text-danger">Stock Out</span>
-                                       @else 
-                                       <button class="btn btn-sm btn-outline-info" type="submit">Add to cart</button>
-                                    @endif
-                                    
-                                </div>
+                              <div class="input-group-prepend">
+                              	@if($product->stock_quantity<1)
+                              	<span class="text-danger">Stock Out</span>
+                              	@else
+                                <button class="btn btn-sm btn-outline-info" type="submit" style="float: right;">
+                               <span class="loading d-none">....</span> Add to cart</button>
+                                @endif
+                              </div>
                             </div>
                         </div>
                     </form>
@@ -73,3 +81,25 @@ $sizes=explode(',',$product->size);
         </div>
     </div>
 </div>
+
+
+<script type="text/javascript">
+  //store coupon ajax call
+  $('#add_cart_form').submit(function(e){
+    e.preventDefault();
+    $('.loading').removeClass('d-none');
+    var url = $(this).attr('action');
+    var request =$(this).serialize();
+    $.ajax({
+      url:url,
+      type:'post',
+      async:false,
+      data:request,
+      success:function(data){
+        toastr.success(data);
+        $('#add_cart_form')[0].reset();
+        $('.loading').addClass('d-none');
+      }
+    });
+  });
+</script>   

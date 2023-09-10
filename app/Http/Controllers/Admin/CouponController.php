@@ -44,6 +44,9 @@ class CouponController extends Controller
             'valid_date' =>$request->valid_date,
             'status' =>$request->status,
          );
+
+
+         
          DB::table('coupons')->insert($data);
          return response()->json('Coupon Store!');
 

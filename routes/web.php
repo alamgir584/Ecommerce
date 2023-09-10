@@ -28,6 +28,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Front'],function(){
     Route::get('/', 'IndexController@index')->name('customer.home');
     Route::get('/product-details/{slug}', 'IndexController@ProductDetails')->name('product.details');
     Route::get('/product-quick-view/{id}', 'IndexController@ProductQuickView');
+    Route::post('/addtocart', 'CartController@AddToCartQV')->name('add.to.cart.quickview');
 
     //review section
     Route::post('/store/review', 'ReviewController@store')->name('store.review');

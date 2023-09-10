@@ -8,6 +8,8 @@ use App\Models\Review;
 use Auth;
 use DB;
 
+// use Log;
+
 class ReviewController extends Controller
 {
     public function __construct()
@@ -44,6 +46,8 @@ class ReviewController extends Controller
 }
 public function AddWishlist($id)
 {
+ 
+    // Log::info('hi');
     $check=DB::table('wishlists')->where('product_id',$id)->where('user_id',Auth::id())->first();
     if ($check) {
        $notification="Already have it on your wishlists!";
