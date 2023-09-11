@@ -119,66 +119,102 @@
 							@endif
                         </div>
 
-                        <div class="form-group">
-                            <div class="row">
-                                @isset($product->size)
-                                <div class="col-lg-6">
-                                    <label>Pick Size: </label>
-                                    <select class="custom-select form-control-sm" style="min-width: 120px; margin-left: -4px;">
-                                        @foreach($sizes as $size)
-                                           <option value="{{ $size }}">{{ $size }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                @endisset
+                    <div class="order_info d-flex flex-row">
+						<form action="{{ route('add.to.cart.quickview') }}" method="post" id="add_to_cart">
+							@csrf
+							<input type="hidden" name="id" value="{{$product->id}}">
+							@if($product->discount_price==NULL)
+                            <input type="hidden" name="price" value="{{$product->selling_price}}">
+                            @else
+                            <input type="hidden" name="price" value="{{$product->discount_price}}">
+                            @endif
 
-                                @isset($product->color)
-                                <div class="col-lg-6">
-                                    <label>Pick Color: </label>
-                                    <select class="custom-select form-control-sm" name="color" style="min-width: 120px;">
-                                        @foreach($color as $row)
-                                           <option value="{{ $row }}">{{ $row }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                @endisset
-                            </div>
-                        </div>
-                        <br>
-                        {{-- <div class="order_info d-flex flex-row"> --}}
-							<form action="#">
-                               
-								<div class="clearfix" style="z-index: 1000;">
-
-									<!-- Product Quantity -->
-									<div class="product_quantity clearfix">
-										<span>Quantity: </span>
-										<input id="quantity_input" type="text" pattern="[1-9]*" value="1">
-										<div class="quantity_buttons">
-											<div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fas fa-chevron-up"></i></div>
-											<div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fas fa-chevron-down"></i></div>
+							<div class="form-group">
+									<div class="row">
+										@isset($product->size)
+										<div class="col-lg-6">
+											<label>Pick Size: </label>
+											<select class="custom-select form-control-sm" name="size" style="min-width: 120px;">
+												@foreach($sizes as $size)
+												   <option value="{{ $size }}">{{ $size }}</option>
+												@endforeach
+											</select>
 										</div>
+										@endisset
+
+								@isset($product->color)
+									<div class="col-lg-6">
+									<label>Pick Color: </label>
+									<select class="custom-select form-control-sm" name="color" style="min-width: 120px;">
+									@foreach($color as $row)
+										<option value="{{ $row }}">{{ $row }}</option>
+									@endforeach
+									</select>
 									</div>
-                                <div>
-                            </div>
-						</div>
+									@endisset
+									</div>
+								</div>
+							<br>
 
-								{{-- <div class="button_container">
-									<button type="button" class="button cart_button">Add to Cart</button>
-									<div class="product_fav"><i class="fas fa-heart"></i></div>
-								</div> --}}
+							<div class="clearfix" style="z-index: 1000;">	
+								<!-- Product Quantity -->
+								<div class="product_quantity clearfix ml-2">
+									<span>Quantity: </span>
+									<input id="quantity_input" type="text" name="qty" pattern="[1-9]*" min="1" value="1">
+									<div class="quantity_buttons">
+										<div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fas fa-chevron-up"></i></div>
+										<div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fas fa-chevron-down"></i></div>
+									</div>
+								</div>
+							</div>
 
-                                <div class="button_container">
-                                    <div class="input-group mb-3">
-                                      <div class="input-group-prepend">
-                                        <button class="btn btn-outline-info" type="submit">Add to cart</button>
-                                        <a href="{{ route('add.wishlist',$product->id)}}" class="btn btn-outline-primary" type="button">Add to wishlist</a>
-                                      </div>
+                            {{-- <div class="form-group">
+                                <div class="row">
+                                    @isset($product->size)
+                                    <div class="col-lg-4">
+                                        <label>Pick Size: </label>
+                                        <select class="custom-select form-control-sm" name="size" style="min-width: 120px; margin-left: -4px;">
+                                            @foreach($sizes as $size)
+                                               <option value="{{ $size }}">{{ $size }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    @endisset
+    
+                                    @isset($product->color)
+                                    <div class="col-lg-4">
+                                        <label>Pick Color: </label>
+                                        <select class="custom-select form-control-sm" name="color" style="min-width: 120px;margin-left: -4px;">
+                                            @foreach($color as $row)
+                                               <option value="{{ $row }}">{{ $row }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    @endisset
+                                    <div class="col-lg-4">
+                                        <label>Quantity: </label>
+                                        <input type="number" min="1" max="1000" name="qty" class="form-control-sm" value="1" style="min-width: 120px;">
                                     </div>
                                 </div>
-							</form>
-						</div>
-				    </div>
+                            </div> --}}
+						
+							<div class="button_container">
+								<div class="input-group mb-3">
+								  <div class="input-group-prepend">
+								  	@if($product->stock_quantity<1)
+								  	<button class="btn btn-outline-danger" disabled="">Stock Out</button>
+								  	@else
+								    <button class="btn btn-outline-info" type="submit"> <span class="loading d-none">....</span> Add to cart</button>
+								    @endif
+
+								    <a href="{{ route('add.wishlist',$product->id) }}" class="btn btn-outline-primary" type="button">Add to wishlist</a>
+								  </div>
+								</div>
+							</div>								
+						</form>
+					</div>
+				</div>
+			</div>
     
 
 				<div class="col-lg-3 order-3" style="border-left: 1px solid grey; padding-left: 10px;">
@@ -504,3 +540,25 @@
 			</div>
 		</div>
 	</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        //store coupon ajax call
+     $('#add_to_cart').submit(function(e){
+       e.preventDefault();
+       var url = $(this).attr('action');
+       var request =$(this).serialize();
+       $.ajax({
+         url:url,
+         type:'post',
+         async:false,
+         data:request,
+         success:function(data){
+           toastr.success(data);
+           $('#add_to_cart')[0].reset();
+           cart();
+         }
+       });
+     });
+   </script>

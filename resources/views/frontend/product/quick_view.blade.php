@@ -1,3 +1,30 @@
+<style>
+    .loader {
+      border: 16px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 16px solid #3498db;
+      width: 30px;
+      height: 30px;
+      margin-left: 45%;
+      margin-top: 15%;
+      margin-bottom: 18%;
+      -webkit-animation: spin 2s linear infinite; /* Safari */
+      animation: spin 2s linear infinite;
+    }
+    
+    /* Safari */
+    @-webkit-keyframes spin {
+      0% { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    
+    </style>
 @php
 $color=explode(',',$product->color);
 $sizes=explode(',',$product->size);
@@ -38,7 +65,7 @@ $sizes=explode(',',$product->size);
                                 @isset($product->size)
                                 <div class="col-lg-4">
                                     <label>Pick Size: </label>
-                                    <select class="custom-select form-control-sm" style="min-width: 120px; margin-left: -4px;">
+                                    <select class="custom-select form-control-sm" name="size" style="min-width: 120px; margin-left: -4px;">
                                         @foreach($sizes as $size)
                                            <option value="{{ $size }}">{{ $size }}</option>
                                         @endforeach
@@ -82,6 +109,14 @@ $sizes=explode(',',$product->size);
     </div>
 </div>
 
+<script type="text/javascript">
+    $('.loader').ready(function() {
+      setTimeout(function() {
+        $('.product_view').removeClass("d-none");
+        $('.loader').css("display", "none");
+      }, 500);
+    });
+    </script>  
 
 <script type="text/javascript">
   //store coupon ajax call
@@ -99,6 +134,8 @@ $sizes=explode(',',$product->size);
         toastr.success(data);
         $('#add_cart_form')[0].reset();
         $('.loading').addClass('d-none');
+        cart();
+        
       }
     });
   });
