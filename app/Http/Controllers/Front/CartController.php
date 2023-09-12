@@ -42,6 +42,49 @@ class CartController extends Controller
          return response()->json($data);
      }
 
+     public function MyCart()
+      {
+        $content=Cart::content();
+        return view('frontend.cart.cart',compact('content'));
+        //return response()->json($content);
+      }
+      public function RemoveProduct($rowId)
+      {
+          Cart::remove($rowId);
+          return response()->json('Success!');
+      }
+  
+      public function UpdateQty($rowId,$qty)
+      {
+          Cart::update($rowId, ['qty' => $qty]);
+          return response()->json('Successfully Updated!');
+      }
+  
+      public function UpdateColor($rowId,$color)
+      {
+          $product=Cart::get($rowId);
+          $thumbnail=$product->options->thumbnail;
+          $size=$product->options->size;
+          Cart::update($rowId, ['options'  => ['color' => $color , 'thumbnail'=>$thumbnail ,'size'=>$size]]);
+          return response()->json('Successfully Updated!');
+      }
+  
+      public function UpdateSize($rowId,$size)
+      {
+          $product=Cart::get($rowId);
+          $thumbnail=$product->options->thumbnail;
+          $color=$product->options->color;
+          Cart::update($rowId, ['options'  => ['size' => $size , 'thumbnail'=>$thumbnail ,'color'=>$color]]);
+          return response()->json('Successfully Updated!');
+      }
+  
+      public function EmptyCart()
+      {
+          Cart::destroy();
+          $notification=array('messege' => 'Cart item clear', 'alert-type' => 'success');
+          return redirect()->to('/')->with($notification); 
+      }
+
      //Add wishlist
      public function AddWishlist($id)
      {

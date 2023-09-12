@@ -32,6 +32,13 @@ Route::group(['namespace'=>'App\Http\Controllers\Front'],function(){
     //cart
     Route::get('/all-cart','CartController@AllCart')->name('all.cart'); //ajax request for subtotal
     Route::post('/addtocart', 'CartController@AddToCartQV')->name('add.to.cart.quickview');
+    Route::get('/my-cart', 'CartController@MyCart')->name('cart');
+    Route::get('/cart/empty','CartController@EmptyCart')->name('cart.empty');
+    Route::get('/cartproduct/remove/{rowId}','CartController@RemoveProduct');
+    Route::get('/cartproduct/updateqty/{rowId}/{qty}','CartController@UpdateQty');
+    Route::get('/cartproduct/updatecolor/{rowId}/{color}','CartController@UpdateColor');
+    Route::get('/cartproduct/updatesize/{rowId}/{size}','CartController@UpdateSize');
+    
     //wishlist section
     Route::get('/add/wishlist/{id}', 'CartController@AddWishlist')->name('add.wishlist');
 
@@ -39,3 +46,8 @@ Route::group(['namespace'=>'App\Http\Controllers\Front'],function(){
     Route::post('/store/review', 'ReviewController@store')->name('store.review');
 
 });
+
+// Route::get('/cart/destroy',function(){
+//     Cart::destroy();
+    
+// });

@@ -22,8 +22,8 @@
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/main_styles.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/responsive.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ asset('backend/plugins/toastr/toastr.css') }}"> 
-{{-- <link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/product_styles.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/product_responsive.css')}}"> --}}
+
+
 
 </head>
 
@@ -224,11 +224,12 @@
 							<div class="cart">
 								<div class="cart_container d-flex flex-row align-items-center justify-content-end">
 									<div class="cart_icon">
-										<img src="{{asset('frontend/images/cart.png')}}" alt="">
+										<a href="{{route('cart')}}">
+										<img src="{{asset('frontend/images/cart.png')}}" alt=""></a>
 										<div class="cart_count"><span class="cart_qty" ></span></div>
 									</div>
 									<div class="cart_content">
-										<div class="cart_text"><a href="#">Cart</a></div>
+										<div class="cart_text"><a href="{{route('cart')}}">Cart</a></div>
 										<div class="cart_price">{{$setting->currency}} <span class="cart_total"></span></div>
 									</div>
 								</div>
