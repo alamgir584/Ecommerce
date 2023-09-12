@@ -72,10 +72,10 @@
 						<div class="product_category">{{$product->Category->category_name}}-> {{$product->Subcategory->subcategory_name}}</div>
 						<div class="product_name" style="font-size: 20px">{{$product->name}}</div>
                         <div class="brand_name">Brand: {{$product->Brandcategory->brand_name}}</div>
-						<div class="stock">Stock: <p>Stock: @if($product->stock_quantity<1) <span class="badge badge-danger">Stock Out</span> @else <span class="badge badge-success">Stock Available</span> @endif </p></div>
+						<div class="stock">Stock: @if($product->stock_quantity<1) <span class="badge badge-danger">Stock Out</span> @else <span class="badge badge-success">Stock Available</span> @endif </div>
 						<div class="unit">Unit: {{$product->unit}}</div>
 						{{-- average review star --}}
-                        <div>
+                        <div> Ratings:
                             @if ($sum_rating!=NULL)
                             @if (intval($sum_rating/$count_rating)==5)
                             <span class="fa fa-star checked"></span>
@@ -113,13 +113,13 @@
 
                         <div>
 							@if ($product->discount_price==NULL)
-							<div class="" style="margin-top: 10px">Price:{{$setting->currency}}{{$product->selling_price}}</div>
+							<div class="" style="margin-top: 10px">Price:{{$setting->currency}} {{$product->selling_price}}</div>
                             @else
-							<div class="" >Price:<del class="text-danger">{{$setting->currency}}{{$product->selling_price}} </del class="text-danger">{{$setting->currency}}{{$product->discount_price}}</div>
+							<div class="" >Price:<del class="text-danger">{{$setting->currency}}  {{$product->selling_price}} </del class="text-danger">{{$setting->currency}} {{$product->discount_price}}</div>
 							@endif
                         </div>
 
-                    <div class="order_info d-flex flex-row">
+                    {{-- <div class="order_info d-flex flex-row"> --}}
 						<form action="{{ route('add.to.cart.quickview') }}" method="post" id="add_to_cart">
 							@csrf
 							<input type="hidden" name="id" value="{{$product->id}}">
@@ -134,7 +134,7 @@
 										@isset($product->size)
 										<div class="col-lg-6">
 											<label>Pick Size: </label>
-											<select class="custom-select form-control-sm" name="size" style="min-width: 120px;">
+											<select class="custom-select form-control-sm" name="size" style="min-width: 120px; margin-left: -4px;">
 												@foreach($sizes as $size)
 												   <option value="{{ $size }}">{{ $size }}</option>
 												@endforeach
@@ -145,7 +145,7 @@
 								@isset($product->color)
 									<div class="col-lg-6">
 									<label>Pick Color: </label>
-									<select class="custom-select form-control-sm" name="color" style="min-width: 120px;">
+									<select class="custom-select form-control-sm" name="color" style="min-width: 120px; margin-left: -4px;">
 									@foreach($color as $row)
 										<option value="{{ $row }}">{{ $row }}</option>
 									@endforeach
@@ -154,9 +154,17 @@
 									@endisset
 									</div>
 								</div>
-							<br>
+                                <div class="form-group">
+                                    <div class="row">
+                                <div class="col-lg-6">
+                                    <label>Quantity: </label>
+                                    <input type="number" min="1" max="1000" name="qty" class="form-control-sm" value="1" style="min-width: 120px; margin-left: -4px;">
+                                </div>
+                            </div>
+                            </div>
+							
 
-							<div class="clearfix" style="z-index: 1000;">	
+							{{-- <div class="clearfix" style="z-index: 1000;">	
 								<!-- Product Quantity -->
 								<div class="product_quantity clearfix ml-2">
 									<span>Quantity: </span>
@@ -166,7 +174,7 @@
 										<div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fas fa-chevron-down"></i></div>
 									</div>
 								</div>
-							</div>
+							</div> --}}
 
                             {{-- <div class="form-group">
                                 <div class="row">
@@ -212,7 +220,7 @@
 								</div>
 							</div>								
 						</form>
-					</div>
+					{{-- </div> --}}
 				</div>
 			</div>
     
