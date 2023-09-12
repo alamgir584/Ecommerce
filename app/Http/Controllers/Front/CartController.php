@@ -98,6 +98,7 @@ class CartController extends Controller
                      $data=array();
                      $data['product_id']=$id;
                      $data['user_id']=Auth::id();
+                     $data['date']=date('d , F Y');
                      DB::table('wishlists')->insert($data);
                      $notification=array('messege' => 'Product added on wishlist!', 'alert-type' => 'success');
                      return redirect()->back()->with($notification); 
