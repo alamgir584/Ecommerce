@@ -26,10 +26,9 @@ class ReviewController extends Controller
     $check=DB::table('reviews')->where('user_id',Auth::id())->where('product_id',$request->product_id)->first();
 
     if ($check) {
-       $notification=array('messege' => 'Already you have a review with this product !', 'alert-type' => 'error');
-       return redirect()->back()->with($notification);
-    }
-
+        $notification=array('messege' => 'Already you have a review with this product !', 'alert-type' => 'error');
+        return redirect()->back()->with($notification); 
+     }
 
     Review::insert([
         'user_id'=>Auth::id(),
@@ -41,7 +40,7 @@ class ReviewController extends Controller
         'review_year'=>date('Y'),
     ]);
 
-
-    return redirect()->back()->with('review');
+    $notification=array('messege' => 'Thank for your review !', 'alert-type' => 'success');
+    return redirect()->back()->with($notification);
    }
 }
