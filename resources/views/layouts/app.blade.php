@@ -213,9 +213,9 @@
                     <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
                         <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
                             <div class="wishlist d-flex flex-row align-items-center justify-content-end">
-                                <div class="wishlist_icon"><img src="{{ asset('/frontend') }}/images/heart.png" alt=""></div>
+                                <div class="wishlist_icon"><a href="{{route('wishlist')}}"><img src="{{ asset('/frontend') }}/images/heart.png" alt=""></a></div>
                                 <div class="wishlist_content">
-                                    <div class="wishlist_text"><a href="#">Wishlist</a></div>
+                                    <div class="wishlist_text"><a href="{{route('wishlist')}}">Wishlist</a></div>
                                     <div class="wishlist_count">{{ $wishlist }}</div>
                                 </div>
                             </div>

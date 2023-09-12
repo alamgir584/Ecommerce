@@ -38,9 +38,12 @@ Route::group(['namespace'=>'App\Http\Controllers\Front'],function(){
     Route::get('/cartproduct/updateqty/{rowId}/{qty}','CartController@UpdateQty');
     Route::get('/cartproduct/updatecolor/{rowId}/{color}','CartController@UpdateColor');
     Route::get('/cartproduct/updatesize/{rowId}/{size}','CartController@UpdateSize');
-    
+
     //wishlist section
     Route::get('/add/wishlist/{id}', 'CartController@AddWishlist')->name('add.wishlist');
+    Route::get('/wishlist','CartController@wishlist')->name('wishlist');
+    Route::get('/clear/wishlist','CartController@Clearwishlist')->name('clear.wishlist');
+    Route::get('/wishlist/product/delete/{id}','CartController@WishlistProductdelete')->name('wishlistproduct.delete');
 
     //review section
     Route::post('/store/review', 'ReviewController@store')->name('store.review');
