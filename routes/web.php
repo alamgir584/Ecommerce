@@ -32,10 +32,10 @@ Route::group(['namespace'=>'App\Http\Controllers\Front'],function(){
     //cart
     Route::get('/all-cart','CartController@AllCart')->name('all.cart'); //ajax request for subtotal
     Route::post('/addtocart', 'CartController@AddToCartQV')->name('add.to.cart.quickview');
+    //wishlist section
+    Route::get('/add/wishlist/{id}', 'CartController@AddWishlist')->name('add.wishlist');
 
     //review section
     Route::post('/store/review', 'ReviewController@store')->name('store.review');
-     //wishlist section
-    Route::get('/add/wishlist/{id}', 'ReviewController@AddWishlist')->name('add.wishlist');
 
 });
