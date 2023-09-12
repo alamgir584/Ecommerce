@@ -30,8 +30,15 @@ class CartController extends Controller
             'options'=>['size'=>$request->size , 'color'=> $request->color ,'thumbnail'=>$product->thumbnail]
 
         ]);
-        return response()->json('product added on cart!');
-        
+        return response()->json('product added on cart!'); 
 
     }
+     //all cart
+     public function AllCart()
+     {
+         $data=array();
+         $data['cart_qty']=Cart::count();
+         $data['cart_total']=Cart::total();
+         return response()->json($data);
+     }
 }

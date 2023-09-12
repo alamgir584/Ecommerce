@@ -225,11 +225,11 @@
 								<div class="cart_container d-flex flex-row align-items-center justify-content-end">
 									<div class="cart_icon">
 										<img src="{{asset('frontend/images/cart.png')}}" alt="">
-										<div class="cart_count"><span>{{Cart::count()}}</span></div>
+										<div class="cart_count"><span class="cart_qty" ></span></div>
 									</div>
 									<div class="cart_content">
 										<div class="cart_text"><a href="#">Cart</a></div>
-										<div class="cart_price">{{$setting->currency}} {{Cart::total() }}</div>
+										<div class="cart_price">{{$setting->currency}} <span class="cart_total"></span></div>
 									</div>
 								</div>
 							</div>
@@ -362,6 +362,26 @@ Copyright &copy;<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd
 <script src="{{asset('frontend/js/product_custom.js')}}"></script>
 <script type="text/javascript" src="{{ asset('backend/plugins/toastr/toastr.min.js') }}"></script>
 <script src="{{ asset('backend/plugins/sweetalert/sweetalert.min.js') }}"></script>
+
+<script type="text/javascript" charset="utf-8">
+    function cart() {
+         $.ajax({
+            type:'get',
+            url:'{{ route('all.cart') }}', 
+            dataType: 'json',
+            success:function(data){
+               $('.cart_qty').empty();
+               $('.cart_total').empty();
+               $('.cart_qty').append(data.cart_qty);
+               $('.cart_total').append(data.cart_total);
+            }
+        });
+    }
+    $(document).ready(function(event) {
+        cart();
+    });
+    
+ </script>
 
 
 <script>
