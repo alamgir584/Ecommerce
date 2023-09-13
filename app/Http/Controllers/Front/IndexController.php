@@ -79,6 +79,16 @@ class IndexController extends Controller
         $random_product=Product::where('status',1)->inRandomOrder()->limit(16)->get();
         return view('frontend.product.childcategory_product',compact('categories','brand','products','random_product','childcategory'));
     }
+        //brandwise product
+        public function BrandWiseProduct($id)
+        {
+            $brand=DB::table('brands')->where('id',$id)->first();
+            $categories=DB::table('categories')->get();
+            $brands=DB::table('brands')->get();
+            $products=DB::table('products')->where('brand_id',$id)->paginate(60);
+            $random_product=Product::where('status',1)->inRandomOrder()->limit(16)->get();
+            return view('frontend.product.brandwise_product',compact('categories','brands','products','random_product','brand'));
+        }
 
 }
     

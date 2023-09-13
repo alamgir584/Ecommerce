@@ -6,11 +6,12 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/shop_responsive.css') }}">
 
 @include('layouts.front_partial.collaps_nav')
+
 <div class="home">
-    <div class="home_background parallax-window" data-parallax="scroll" data-image-src="{{ asset('public/frontend/images/shop_background.jpg') }}"></div>
+    <div class="home_background parallax-window" data-parallax="scroll" data-image-src="{{ asset('frontend/images/shop_background.jpg') }}"></div>
     <div class="home_overlay"></div>
     <div class="home_content d-flex flex-column align-items-center justify-content-center">
-        <h2 class="home_title">{{ $childcategory->childcategory_name }}</h2>
+        <h2 class="home_title">{{ $brand->brand_name }}</h2>
     </div>
 </div>
 <!-- Shop -->
@@ -21,7 +22,7 @@
                         <div class="brands_slider_container">  
                             <!-- Brands Slider -->
                             <div class="owl-carousel owl-theme brands_slider">
-                               @foreach($brand as $row) 
+                               @foreach($brands as $row) 
                                 <div class="owl-item">
                                     <div class="brands_item d-flex flex-column justify-content-center">
                                        <a href="{{ route('brandwise.product',$row->id) }}" title="{{ $row->brand_name }}"> <img src="{{asset('files/brand/'.$row->brand_logo)}}" alt="{{ $row->brand_name }}" height="50" width="40"> </a>
@@ -95,6 +96,7 @@
                             </ul>
                         </div>
                     </div>
+
                     <div class="product_grid row">
                         <div class="product_grid_border"></div>
 
@@ -212,4 +214,5 @@
     });
  });
 </script>
+
 @endsection

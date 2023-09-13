@@ -51,7 +51,7 @@
                @foreach($brand as $row) 
                 <div class="col-lg-1 col-md-6 char_col" style="border:1px solid grey; padding:5px;">
                     <div class="brands_item">
-                       <a href="#" title="{{ $row->brand_name }}"> 
+                       <a href="{{ route('brandwise.product',$row->id) }}" title="{{ $row->brand_name }}"> 
                         <img src="{{asset('files/brand/'.$row->brand_logo)}}" alt="{{$row->brand_name}}" height="100%" width="100%"> 
                        </a>
                     </div>
@@ -747,7 +747,7 @@
 
 	<!-- Brands -->
 
-	<div class="brands">
+	{{-- <div class="brands">
 		<div class="container">
 			<div class="row">
 				<div class="col">
@@ -758,7 +758,7 @@
 						<div class="owl-carousel owl-theme brands_slider">
 							@foreach ($brand as $row)
 							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center">
-							<a href="#" title="{{$row->brand_name}}"><img src="{{asset('files/brand/'.$row->brand_logo)}}" alt="{{$row->brand_name}}" width="40px" height="50px"></a></div></div>
+							<a href="{{ route('brandwise.product',$row->id) }}" title="{{$row->brand_name}}"><img src="{{asset('files/brand/'.$row->brand_logo)}}" alt="{{$row->brand_name}}" width="40px" height="50px"></a></div></div>
 							@endforeach
 						</div>
 						
@@ -771,7 +771,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --}}
 
 	<!-- Newsletter -->
 

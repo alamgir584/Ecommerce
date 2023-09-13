@@ -25,7 +25,7 @@
                                @foreach($brand as $row) 
                                 <div class="owl-item">
                                     <div class="brands_item d-flex flex-column justify-content-center">
-                                       <a href="#" title="{{ $row->brand_name }}"> <img src="{{asset('files/brand/'.$row->brand_logo)}}" alt="{{ $row->brand_name }}" height="50" width="40"> </a>
+                                       <a href="{{ route('brandwise.product',$row->id) }}" title="{{ $row->brand_name }}"> <img src="{{asset('files/brand/'.$row->brand_logo)}}" alt="{{ $row->brand_name }}" height="50" width="40"> </a>
                                     </div>
                                 </div>
                                @endforeach     
@@ -96,7 +96,7 @@
                             </ul>
                         </div>
                     </div>
-                    
+
                     <div class="product_grid row">
                         <div class="product_grid_border"></div>
 
