@@ -36,7 +36,7 @@ $category=DB::table('categories')->orderBy('category_name','ASC')->get();
 									            <a href="{{ route('subcategorywise.product',$row->id) }}">{{ $row->subcategory_name }}<i class="fas fa-chevron-right"></i></a>
 									            <ul>
 									                @foreach($childcategory as $row)
-									                 <li><a href="#">{{ $row->childcategory_name }}<i class="fas fa-chevron-right"></i></a></li> 
+									                 <li><a href="{{ route('childcategorywise.product',$row->id) }}">{{ $row->childcategory_name }}<i class="fas fa-chevron-right"></i></a></li> 
 									                @endforeach
 									            </ul>
 									        </li>
