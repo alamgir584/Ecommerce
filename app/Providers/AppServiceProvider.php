@@ -4,6 +4,7 @@ namespace App\Providers;
 use DB;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,5 +27,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $settings=DB::table('settings')->first();
         view()->share('setting', $settings);
+
+        //for pagination
+        Paginator::useBootstrap();
     }
 }

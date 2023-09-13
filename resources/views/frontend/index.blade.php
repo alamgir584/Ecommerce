@@ -158,7 +158,7 @@
 										<div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
 											<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="{{asset('files/product/'.$row->thumbnail)}}" alt="{{$row->name}}" height="100%" width="80%"></div>
 											<div class="product_content">
-												<div class="product_price discount">
+												<div class="product content">
 													@if ($row->discount_price==NULL)
 													<div class="viewd_price"><span>{{$setting->currency}}{{$row->selling_price}}</span></div>
 													@else
@@ -200,7 +200,7 @@
 										<div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
 											<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="{{asset('files/product/'.$row->thumbnail)}}" alt="{{$row->name}}" height="100%" width="80%"></div>
 											<div class="product_content">
-												<div class="product_price discount">
+												<div class="product content">
 													@if ($row->discount_price==NULL)
 													<div class="viewd_price"><span>{{$setting->currency}}{{$row->selling_price}}</span></div>
 													@else

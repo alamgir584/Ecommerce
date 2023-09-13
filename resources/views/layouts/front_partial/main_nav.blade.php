@@ -28,7 +28,7 @@ use App\Models\Childcategory;
 									@endphp
 
 									<li class="hassubs">
-										<a href="#"><img src="{{asset('files/category/'.$row->icon)}}" height="18" width="18"> {{$row->category_name}}<i class="fas fa-chevron-right"></i></a>
+										<a href="{{route('categorywise.product',$row->id)}}"><img src="{{asset('files/category/'.$row->icon)}}" height="18" width="18"> {{$row->category_name}}<i class="fas fa-chevron-right"></i></a>
 										<ul>
 									@foreach ($subcategory as $row)
                                     @php

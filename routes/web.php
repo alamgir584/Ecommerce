@@ -48,9 +48,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Front'],function(){
     //review section
     Route::post('/store/review', 'ReviewController@store')->name('store.review');
 
-});
+    //categorywise product
+    Route::get('/category/product/{id}','IndexController@categoryWiseProduct')->name('categorywise.product');
 
-// Route::get('/cart/destroy',function(){
-//     Cart::destroy();
-    
-// });
+});
