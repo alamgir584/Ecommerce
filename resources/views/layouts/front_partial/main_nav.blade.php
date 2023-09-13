@@ -35,7 +35,7 @@ use App\Models\Childcategory;
                                         $childcategory=Childcategory::all()->where('subcategory_id',$row->id);
                                     @endphp
 											<li class="hassubs">
-												<a href="#">{{$row->subcategory_name}}<i class="fas fa-chevron-right"></i></a>
+												<a href="{{ route('subcategorywise.product',$row->id) }}">{{$row->subcategory_name}}<i class="fas fa-chevron-right"></i></a>
 												<ul>
 													@foreach ($childcategory as $row)
 													<li><a href="#">{{$row->childcategory_name}}<i class="fas fa-chevron-right"></i></a></li>

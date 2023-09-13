@@ -48,7 +48,7 @@
                         <div class="sidebar_title">Subcategories</div>
                         <ul class="sidebar_categories">
                             @foreach($subcategory as $row)
-                             <li><a href="#">{{ $row->subcategory_name }}</a></li>
+                             <li><a href="{{ route('subcategorywise.product',$row->id) }}">{{ $row->subcategory_name }}</a></li>
                             @endforeach
                         </ul>
                     </div>

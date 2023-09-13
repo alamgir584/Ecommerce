@@ -59,6 +59,16 @@ class IndexController extends Controller
         return view('frontend.product.category_products',compact('subcategory','brand','products','random_product','category'));
 
     }
+        //subcategorywise product
+        public function SubcategoryWiseProduct($id)
+        {
+            $subcategory=DB::table('subcategories')->where('id',$id)->first();
+            $childcategories=DB::table('childcategories')->where('subcategory_id',$id)->get();
+            $brand=DB::table('brands')->get();
+            $products=DB::table('products')->where('subcategory_id',$id)->paginate(60);
+            $random_product=Product::where('status',1)->inRandomOrder()->limit(16)->get();
+            return view('frontend.product.subcategory_product',compact('childcategories','brand','products','random_product','subcategory'));
+        }
 }
     
 
