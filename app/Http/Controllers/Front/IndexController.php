@@ -96,6 +96,22 @@ class IndexController extends Controller
         $page=DB::table('pages')->where('page_slug',$page_slug)->first();
         return view('frontend.page',compact('page'));
     }
+        //store newsletter
+        public function storeNewsletter(Request $request)
+        {
+            $email=$request->email;
+            $check=DB::table('newsletters')->where('email',$email)->first();
+            if ($check) {
+                return response()->json('Email Already Exist!');
+            }else{
+                  $data=array();
+                  $data['email']=$request->email;
+                  DB::table('newsletters')->insert($data);
+                  return response()->json('Thanks for subscribe us!');  
+            }
+           
+    
+        }
 
 }
     

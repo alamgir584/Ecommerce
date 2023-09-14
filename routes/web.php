@@ -63,5 +63,8 @@ Route::group(['namespace'=>'App\Http\Controllers\Front'],function(){
 
     //page view
     Route::get('/page/{page_slug}','IndexController@ViewPage')->name('view.page');
+    
+    //newsletter
+    Route::post('/store/newsletter','IndexController@storeNewsletter')->name('store.newsletter');
 
 });
