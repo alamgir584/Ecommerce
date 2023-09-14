@@ -47,6 +47,9 @@ Route::group(['namespace'=>'App\Http\Controllers\Front'],function(){
 
     //review section
     Route::post('/store/review', 'ReviewController@store')->name('store.review');
+    //this review for website not product
+    Route::get('/write/review','ReviewController@write')->name('write.review');
+    Route::post('/store/website/review','ReviewController@StoreWebsiteReview')->name('store.website.review');
 
     //categorywise product
     Route::get('/category/product/{id}','IndexController@categoryWiseProduct')->name('categorywise.product');
