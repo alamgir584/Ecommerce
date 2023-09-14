@@ -57,4 +57,11 @@ Route::group(['namespace'=>'App\Http\Controllers\Front'],function(){
     Route::get('/childcategory/product/{id}','IndexController@ChildcategoryWiseProduct')->name('childcategorywise.product');
     Route::get('/brandwise/product/{id}','IndexController@BrandWiseProduct')->name('brandwise.product');
 
+     //setting profile
+     Route::get('/home/setting','ProfileController@setting')->name('customer.setting'); 
+     Route::post('/home/password/update','ProfileController@PasswordChange')->name('customer.password.change'); 
+
+    //page view
+    Route::get('/page/{page_slug}','IndexController@ViewPage')->name('view.page');
+
 });
