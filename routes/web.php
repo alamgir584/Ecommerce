@@ -34,6 +34,11 @@ Route::group(['namespace'=>'App\Http\Controllers\Front'],function(){
     Route::post('/addtocart', 'CartController@AddToCartQV')->name('add.to.cart.quickview');
     Route::get('/my-cart', 'CartController@MyCart')->name('cart');
     Route::get('/cart/empty','CartController@EmptyCart')->name('cart.empty');
+    Route::get('/checkout','CheckoutController@Checkout')->name('checkout');
+    Route::post('/apply/coupon','CheckoutController@ApplyCoupon')->name('apply.coupon');
+    Route::get('/remove/coupon','CheckoutController@RemoveCoupon')->name('coupon.remove');
+    Route::post('/order/place','CheckoutController@OrderPlace')->name('order.place');
+
     Route::get('/cartproduct/remove/{rowId}','CartController@RemoveProduct');
     Route::get('/cartproduct/updateqty/{rowId}/{qty}','CartController@UpdateQty');
     Route::get('/cartproduct/updatecolor/{rowId}/{color}','CartController@UpdateColor');

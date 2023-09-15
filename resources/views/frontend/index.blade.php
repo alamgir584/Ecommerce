@@ -807,7 +807,7 @@
 			});
 		 });
 
-//store coupon ajax call
+//store news letter ajax call
 $('#newsletter_form').submit(function(e){
     e.preventDefault();
     var url = $(this).attr('action');
