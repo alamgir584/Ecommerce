@@ -44,4 +44,9 @@ class ProfileController extends Controller
             return redirect()->back()->with($notification);
         }
     }
+    public function MyOrder()
+    {
+       $orders=DB::table('orders')->where('user_id',Auth::id())->orderBy('id','DESC')->get();
+       return view('user.my_order',compact('orders'));
+    }
 }
