@@ -147,6 +147,12 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
 			Route::delete('/ticket/delete/{id}','TicketController@destroy')->name('admin.ticket.delete');
 			
 	    });
+        //website setting
+		Route::group(['prefix'=>'payment-gateway'], function(){
+			Route::get('/','SettingController@PaymentGateway')->name('payment.gateway');
+			Route::post('/update-aamarpay','SettingController@AamarpayUpdate')->name('update.aamarpay');
+			Route::post('/update-surjopay','SettingController@SurjopayUpdate')->name('update.surjopay');
+	    });
      
 
 

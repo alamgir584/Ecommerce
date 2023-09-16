@@ -138,8 +138,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                  {{-- {{ route('payment.gateway') }} --}}
+                <a href="{{ route('payment.gateway') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Payment Gateway</p>
                 </a>
@@ -209,6 +208,7 @@
             </li>
             
           </li>
+          
           <!-- <li class="nav-header">LABELS</li>
           <li class="nav-item">
             <a class="dropdown-item" href="{{ route('admin.logout') }}">
