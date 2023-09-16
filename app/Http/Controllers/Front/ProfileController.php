@@ -49,6 +49,15 @@ class ProfileController extends Controller
        $orders=DB::table('orders')->where('user_id',Auth::id())->orderBy('id','DESC')->get();
        return view('user.my_order',compact('orders'));
     }
+        //__customer oder details
+        public function ViewOrder($id)
+        {
+            $order=DB::table('orders')->where('id',$id)->first();
+            //$order=Order::findorfail($id);
+            $order_details=DB::table('order_details')->where('order_id',$id)->get();
+    
+            return view('user.order_details',compact('order','order_details'));
+        }
         //ticekt
         public function ticket()
         {
