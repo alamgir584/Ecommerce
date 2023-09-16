@@ -73,4 +73,11 @@ Route::group(['namespace'=>'App\Http\Controllers\Front'],function(){
     //newsletter
     Route::post('/store/newsletter','IndexController@storeNewsletter')->name('store.newsletter');
 
+    //support ticket
+    Route::get('/open/ticket','ProfileController@ticket')->name('open.ticket');
+    Route::get('/new/ticket','ProfileController@NewTicket')->name('new.ticket');
+    Route::post('/store/ticket','ProfileController@StoreTicket')->name('store.ticket');
+    Route::get('/show/ticket/{id}','ProfileController@ticketShow')->name('show.ticket');
+    Route::post('/reply/ticket','ProfileController@ReplyTicket')->name('reply.ticket');
+
 });
