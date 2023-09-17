@@ -1,3 +1,11 @@
+@extends('layouts.app')
+@section('content')
+<link rel="stylesheet" type="text/css" href="{{ asset('frontend') }}/styles/product_styles.css">
+<link rel="stylesheet" type="text/css" href="{{ asset('frontend') }}/styles/product_responsive.css">
+<script src="{{ asset('public/js/share.js') }}"></script>
+
+@include('layouts.front_partial.collaps_nav')
+
 @php
     use App\Models\Review;
 @endphp
@@ -75,7 +83,7 @@
 						<div class="stock">Stock: @if($product->stock_quantity<1) <span class="badge badge-danger">Stock Out</span> @else <span class="badge badge-success">Stock Available</span> @endif </div>
 						<div class="unit">Unit: {{$product->unit}}</div>
 						{{-- average review star --}}
-                        @isset($product->rating)
+                        @isset($product->rating)                           
                         <div> Ratings:
                             @if ($sum_rating!=NULL)
                             @if (intval($sum_rating/$count_rating)==5)
@@ -113,23 +121,13 @@
                         </div>
                         @endisset
 
-                        <div>
-							@if ($product->discount_price==NULL)
-							<div class="" style="margin-top: 10px">Price:{{$setting->currency}} {{$product->selling_price}}</div>
-                            @else
-							<div class="" >Price:<del class="text-danger">{{$setting->currency}}  {{$product->selling_price}} </del class="text-danger">{{$setting->currency}} {{$product->discount_price}}</div>
-							@endif
-                        </div>
+                        <div class="">Price: {{ $setting->currency }}{{$product_price->price}}</div>
 
                     {{-- <div class="order_info d-flex flex-row"> --}}
 						<form action="{{ route('add.to.cart.quickview') }}" method="post" id="add_to_cart">
 							@csrf
-							<input type="hidden" name="id" value="{{$product->id}}">
-							@if($product->discount_price==NULL)
-                            <input type="hidden" name="price" value="{{$product->selling_price}}">
-                            @else
-                            <input type="hidden" name="price" value="{{$product->discount_price}}">
-                            @endif
+                            <input type="hidden" name="id" value="{{$product->id}}">
+                            <input type="hidden" name="price" value="{{$product_price->price}}">
 
 							<div class="form-group">
 									<div class="row">
@@ -218,11 +216,10 @@
 								    @endif
 
 								    <a href="{{ route('add.wishlist',$product->id) }}" class="btn btn-outline-primary" type="button">Add to wishlist</a>
-								  </div>
 								</div>
-							</div>								
-						</form>
-					{{-- </div> --}}
+							</div>
+						</div>								
+					</form>
 				</div>
 			</div>
     
@@ -449,57 +446,52 @@
 
 	<!-- Related Product -->
 
-	<div class="viewed">
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<div class="viewed_title_container">
-						<h3 class="viewed_title">Related Product</h3>
-						<div class="viewed_nav_container">
-							<div class="viewed_nav viewed_prev"><i class="fas fa-chevron-left"></i></div>
-							<div class="viewed_nav viewed_next"><i class="fas fa-chevron-right"></i></div>
-						</div>
-					</div>
-
-					<div class="viewed_slider_container">
-
-						<!-- Related Product Slider -->
-
-						<div class="owl-carousel owl-theme viewed_slider">
-
-                            @foreach ($related_product as $row)
-
-							<!-- Related Product Item -->
-							<div class="owl-item">
-								<div class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-									<div class="viewed_image"><img src="{{asset('/files/product/'.$row->thumbnail)}}" alt="{{$row->name}}"></div>
-									<div class="viewed_content text-center">
-                                        @if ($row->discount_price==NULL)
-                                        <div class="viewd_price"><span>{{$setting->currency}}{{$row->selling_price}}</span></div>
-                                        @else
-                                        <div class="viewd_price" ><span class="text-danger"><del>{{$setting->currency}}{{$row->selling_price}}</del></span class="text-danger"> {{$setting->currency}}{{$row->discount_price}}</div>
-                                        @endif
-
-										<div class="viewed_name"><a href="{{route('product.details',$row->slug)}}">{{substr($row->name,0,50)}}</a></div>
-									</div>
-									<ul class="item_marks">
-										<li class="item_mark item_discount">new</li>
-									</ul>
-								</div>
-							</div>
-
-                            @endforeach
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="viewed">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="viewed_title_container">
+                        <h3 class="viewed_title">Related Product</h3>
+                        <div class="viewed_nav_container">
+                            <div class="viewed_nav viewed_prev"><i class="fas fa-chevron-left"></i></div>
+                            <div class="viewed_nav viewed_next"><i class="fas fa-chevron-right"></i></div>
+                        </div>
+                    </div>
+    
+                    <div class="viewed_slider_container">
+                        
+                        <!-- related product Viewed Slider -->
+    
+                        <div class="owl-carousel owl-theme viewed_slider">
+                         @foreach($related_product as $row)		
+                            <!-- Recently Viewed Item -->
+                            <div class="owl-item">
+                                <div class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
+                                    <div class="viewed_image"><img src="{{ asset('/files/product/'.$row->thumbnail) }}" alt="{{ $row->name }}"></div>
+                                    <div class="viewed_content text-center">
+                                     <div class="viewed_price">{{ $setting->currency }}{{$row->price}}</div>
+                       
+    
+                                        
+                                        <div class="viewed_name"><a href="{{ route('campaign.product.details',$row->slug) }}">{{ substr($row->name, 0, 50) }}</a></div>
+                                    </div>
+                                    <ul class="item_marks">
+                                        <li class="item_mark item_discount">new</li>
+                                    </ul>
+                                </div>
+                            </div>
+                         @endforeach	
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 	<!-- Brands -->
 
-	<div class="brands">
+	{{-- <div class="brands">
 		<div class="container">
 			<div class="row">
 				<div class="col">
@@ -524,11 +516,11 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --}}
 
 	<!-- Newsletter -->
 
-	<div class="newsletter">
+	{{-- <div class="newsletter">
 		<div class="container">
 			<div class="row">
 				<div class="col">
@@ -549,7 +541,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --}}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -572,3 +564,5 @@
        });
      });
    </script>
+
+@endsection

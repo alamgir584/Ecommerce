@@ -92,4 +92,8 @@ Route::group(['namespace'=>'App\Http\Controllers\Front'],function(){
         return redirect()->to('/');
     })->name('cancel');
 
+    //__campaign__//
+    Route::get('/campain/products/{id}','IndexController@CampaignProduct')->name('frontend.campaign.product');   
+    Route::get('/camapign-product-details/{slug}','IndexController@CampaignProductDetails')->name('campaign.product.details');
+
 });
