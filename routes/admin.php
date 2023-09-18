@@ -115,22 +115,22 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
      
 
     //product Routes
-      Route::group(['prefix'=>'admin/product'], function(){
-          Route::get('/','ProductController@index')->name('product.index');
-          Route::get('/create','ProductController@create')->name('product.create');
-          Route::post('/store','ProductController@store')->name('product.store');
-          Route::get('/delete/{id}','ProductController@delete')->name('product.delete');
-          Route::get('/edit/{id}','ProductController@edit')->name('product.edit');
-          Route::post('/update/{id}','ProductController@update')->name('product.update');
-          Route::get('/active-featured/{id}','ProductController@activefeatured');
-          Route::get('/not-featured/{id}','ProductController@notfeatured');
-          Route::get('/active-deal/{id}','ProductController@activedeal');
-          Route::get('/not-deal/{id}','ProductController@notdeal');
-          Route::get('/active-status/{id}','ProductController@activestatus');
-          Route::get('/not-status/{id}','ProductController@notstatus');
+    Route::group(['prefix'=>'admin/product'], function(){
+        Route::get('/','ProductController@index')->name('product.index');
+        Route::get('/create','ProductController@create')->name('product.create');
+        Route::post('/store','ProductController@store')->name('product.store');
+        Route::get('/delete/{id}','ProductController@delete')->name('product.delete');
+        Route::get('/edit/{id}','ProductController@edit')->name('product.edit');
+        Route::post('/update/{id}','ProductController@update')->name('product.update');
+        Route::get('/active-featured/{id}','ProductController@activefeatured');
+        Route::get('/not-featured/{id}','ProductController@notfeatured');
+        Route::get('/active-deal/{id}','ProductController@activedeal');
+        Route::get('/not-deal/{id}','ProductController@notdeal');
+        Route::get('/active-status/{id}','ProductController@activestatus');
+        Route::get('/not-status/{id}','ProductController@notstatus');
         
        });
-       //Campaign Routes
+    //Campaign Routes
 	Route::group(['prefix'=>'campaign'], function(){
 		Route::get('/','CampaignController@index')->name('campaign.index');
 		Route::post('/store','CampaignController@store')->name('campaign.store');
@@ -138,29 +138,43 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
 		Route::get('/edit/{id}','CampaignController@edit');
 		Route::post('/update','CampaignController@update')->name('campaign.update');
 	});
-    	//__campaign product routes__//
+    //__campaign product routes__//
 	Route::group(['prefix'=>'campaign-product'], function(){
 		Route::get('/{campaign_id}','CampaignController@campaignProduct')->name('campaign.product');
 		Route::get('/add/{id}/{campaign_id}','CampaignController@ProductAddToCampaign')->name('add.product.to.campaign');
 		Route::get('/list/{campaign_id}','CampaignController@ProductListCampaign')->name('campaign.product.list');
 		Route::get('/remove/{id}','CampaignController@RemoveProduct')->name('product.remove.campaign');
 	});
-    	    //Ticket 
-		Route::group(['prefix'=>'ticket'], function(){
-			Route::get('/','TicketController@index')->name('ticket.index');
-			Route::get('/ticket/show/{id}','TicketController@show')->name('admin.ticket.show');
-			Route::post('/ticket/reply','TicketController@ReplyTicket')->name('admin.store.reply');
-			Route::get('/ticket/close/{id}','TicketController@CloseTicket')->name('admin.close.ticket');
-			Route::delete('/ticket/delete/{id}','TicketController@destroy')->name('admin.ticket.delete');
+    //Ticket 
+	Route::group(['prefix'=>'ticket'], function(){
+		Route::get('/','TicketController@index')->name('ticket.index');
+		Route::get('/ticket/show/{id}','TicketController@show')->name('admin.ticket.show');
+		Route::post('/ticket/reply','TicketController@ReplyTicket')->name('admin.store.reply');
+		Route::get('/ticket/close/{id}','TicketController@CloseTicket')->name('admin.close.ticket');
+		Route::delete('/ticket/delete/{id}','TicketController@destroy')->name('admin.ticket.delete');
 			
 	    });
-        //website setting
-		Route::group(['prefix'=>'payment-gateway'], function(){
-			Route::get('/','SettingController@PaymentGateway')->name('payment.gateway');
-			Route::post('/update-aamarpay','SettingController@AamarpayUpdate')->name('update.aamarpay');
-			Route::post('/update-surjopay','SettingController@SurjopayUpdate')->name('update.surjopay');
+    //website setting
+	Route::group(['prefix'=>'payment-gateway'], function(){
+		Route::get('/','SettingController@PaymentGateway')->name('payment.gateway');
+		Route::post('/update-aamarpay','SettingController@AamarpayUpdate')->name('update.aamarpay');
+		Route::post('/update-surjopay','SettingController@SurjopayUpdate')->name('update.surjopay');
 	    });
-     
+    //__order 
+	Route::group(['prefix'=>'order'], function(){
+		Route::get('/','OrderController@index')->name('admin.order.index');
+		Route::get('/admin/edit/{id}','OrderController@Editorder');
+		Route::post('/update/order/status','OrderController@updateStatus')->name('update.order.status');
+		Route::get('/view/admin/{id}','OrderController@ViewOrder');
+		Route::get('/delete/{id}','OrderController@delete')->name('order.delete');
+		 
+	}); 
+    //__report routes__//
+    Route::group(['prefix'=>'report'], function(){
+        Route::get('/order','OrderController@Reportindex')->name('report.order.index');
+        Route::get('/order/print','OrderController@ReportOrderPrint')->name('report.order.print');
+                
+    });
 
 
     });
