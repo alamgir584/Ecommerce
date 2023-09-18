@@ -176,5 +176,15 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
                 
     });
 
+    //Blog category
+    Route::group(['prefix'=>'blog-category'], function(){
+        Route::get('/','BlogController@index')->name('admin.blog.category');
+        Route::post('/store','BlogController@store')->name('blog.category.store');
+        Route::get('/delete/{id}','BlogController@destroy')->name('blog.category.delete');
+        Route::get('/edit/{id}','BlogController@edit');
+        Route::post('/update','BlogController@update')->name('blog.category.update');
+    });
+    
+
 
     });
