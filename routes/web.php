@@ -96,4 +96,8 @@ Route::group(['namespace'=>'App\Http\Controllers\Front'],function(){
     Route::get('/campain/products/{id}','IndexController@CampaignProduct')->name('frontend.campaign.product');   
     Route::get('/camapign-product-details/{slug}','IndexController@CampaignProductDetails')->name('campaign.product.details');
 
+    //socialite
+    Route::get('oauth/{driver}', [App\Http\Controllers\Auth\LoginController::class, 'redirectToProvider'])->name('social.oauth');
+    Route::get('oauth/{driver}/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleProviderCallback'])->name('social.callback');
+
 });

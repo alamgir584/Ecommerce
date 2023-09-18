@@ -119,19 +119,17 @@
                                                        <input type="password" class="form-control" name="password" required="">
                                                    </div>
 
+                                                   <div class="form-group row">
+                                                    <div class="offset-md-2">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                                   {{-- <div class="form-group row">
-                                                       <div class="offset-md-2">
-                                                           <div class="form-check">
-                                                               <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                                               <label class="form-check-label" for="remember">
-                                                                   {{ __('Remember Me') }}
-                                                               </label>
-                                                           </div>
-                                                       </div>
-                                                   </div> --}}
-
+                                                            <label class="form-check-label" for="remember">
+                                                                {{ __('Remember Me') }}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                                    <div class="form-group">
                                                        <button type="submit" class="btn btn-sm btn-info">login</button>
@@ -139,9 +137,9 @@
                                                </form>
 
 
-                                               {{-- <div class="form-group">
-                                                 <a href="{{ route('social.oauth', 'google') }}" class="btn btn-danger btn-sm btn-block text-white">Login WIth Google</a>
-                                                </div> --}}
+                                               <div class="form-group">
+                                                 <a href="{{ route('social.oauth', 'google') }}" class="btn btn-danger btn-sm btn-block text-white">Login With Google</a>
+                                                </div>
 
 
                                            </div>
