@@ -157,7 +157,16 @@ class IndexController extends Controller
             return view('frontend.campaign.product_details',compact('product','related_product','review','product_price'));
     
         }
-
+            //constact page
+    public function Contact()
+    {
+        return view('frontend.contact');
+    }
+        //__blog page
+        public function Blog()
+        {
+            return view('frontend.blog');
+        }
 }
     
 

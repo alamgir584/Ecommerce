@@ -92,6 +92,7 @@
 
 
 
+
 <script type="text/javascript">
 	$(function products(){
 		table=$('.ytable').DataTable({

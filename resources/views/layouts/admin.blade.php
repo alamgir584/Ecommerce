@@ -169,7 +169,8 @@ $(function () {
   $('.textarea').summernote()
 })
 </script>
-
+{{-- for print report --}}
+<script src="{{asset('backend/plugins/print_this/printThis.js')}}"></script>
 <script>
   $(function () {
     $("#example1").DataTable({

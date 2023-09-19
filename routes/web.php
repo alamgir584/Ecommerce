@@ -100,4 +100,9 @@ Route::group(['namespace'=>'App\Http\Controllers\Front'],function(){
     Route::get('oauth/{driver}', [App\Http\Controllers\Auth\LoginController::class, 'redirectToProvider'])->name('social.oauth');
     Route::get('oauth/{driver}/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleProviderCallback'])->name('social.callback');
 
+//contact
+    Route::get('/contact-us','IndexController@Contact')->name('contact');
+    Route::get('/our-blog','IndexController@Blog')->name('blog');
+   
+
 });

@@ -56,8 +56,9 @@ use App\Models\Childcategory;
 								<ul class="standard_dropdown main_nav_dropdown">
 									<li><a href="url('/')">Home<i class="fas fa-chevron-down"></i></a></li>
 									<li><a href="#">Campaign<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="#">Contact<i class="fas fa-chevron-down"></i></a></li>
-									<li><a href="#">HelpLine<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="{{route('blog')}}">Blog<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="{{route('contact')}}">Contact<i class="fas fa-chevron-down"></i></a></li>
+									
 								</ul>
 							</div>
 
