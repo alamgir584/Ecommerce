@@ -31,14 +31,13 @@
               <p>Dashboard</p>
             </a>
           </li>
-
+          @if(Auth::user()->category==1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Category
                 <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">4</span>
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -68,14 +67,15 @@
               </li>
             </ul>
           </li>
-            
+          @endif
+           
+          @if(Auth::user()->product==1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Product
                 <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">2</span>
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -96,104 +96,15 @@
                 </li>
               </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-               Reports
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('report.order.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Order report</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Customer report</p>
-                </a>
-              </li> 
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Stock report </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Product report </p>
-                </a>
-              </li> 
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Ticket report </p>
-                </a>
-              </li> 
-            </ul>
-          </li>
+          @endif
 
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                Settings
-                <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">4</span>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{route('seo.setting')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>SEO Settings</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('website.setting')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Website Setting</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('page.index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Page Create</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('smtp.setting')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>SMTP Setting</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('warehouse.index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Warehouse</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('payment.gateway') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Payment Gateway</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-
+          @if(Auth::user()->offer==1)
         <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Offer
                 <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">2</span>
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -211,7 +122,9 @@
               </li>
             </ul>
           </li>
+          @endif
 
+          @if(Auth::user()->order==1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -230,6 +143,30 @@
               </li>
             </ul>
           </li>
+          @endif
+
+          @if(Auth::user()->order==1)
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+               Orders
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+              <li class="nav-item">
+                <a href="{{ route('admin.order.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Orders</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          @endif
+
+          @if(Auth::user()->blog==1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -253,6 +190,49 @@
               </li>
             </ul>
           </li>
+          @endif
+
+          @if(Auth::user()->pickup==1)
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Pickup
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('pickup-point.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pickup</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          @endif
+
+          @if(Auth::user()->ticket==1)
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+               Ticket
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('ticket.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ticket</p>
+                </a>
+              </li>   
+            </ul>
+          </li>  
+          @endif 
+
+          @if(Auth::user()->contact==1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -270,44 +250,128 @@
               </li>   
             </ul>
           </li>
+           @endif
 
+           @if(Auth::user()->report==1)
+           <li class="nav-item">
+             <a href="#" class="nav-link">
+               <i class="nav-icon fas fa-copy"></i>
+               <p>
+                Reports
+                 <i class="fas fa-angle-left right"></i>
+               </p>
+             </a>
+             <ul class="nav nav-treeview">
+               <li class="nav-item">
+                 <a href="{{ route('report.order.index') }}" class="nav-link">
+                   <i class="far fa-circle nav-icon"></i>
+                   <p>Order report</p>
+                 </a>
+               </li>
+               <li class="nav-item">
+                 <a href="#" class="nav-link">
+                   <i class="far fa-circle nav-icon"></i>
+                   <p>Customer report</p>
+                 </a>
+               </li> 
+               <li class="nav-item">
+                 <a href="#" class="nav-link">
+                   <i class="far fa-circle nav-icon"></i>
+                   <p>Stock report </p>
+                 </a>
+               </li>
+               <li class="nav-item">
+                 <a href="#" class="nav-link">
+                   <i class="far fa-circle nav-icon"></i>
+                   <p>Product report </p>
+                 </a>
+               </li> 
+               <li class="nav-item">
+                 <a href="#" class="nav-link">
+                   <i class="far fa-circle nav-icon"></i>
+                   <p>Ticket report </p>
+                 </a>
+               </li> 
+             </ul>
+           </li>
+           @endif
+
+           @if(Auth::user()->setting==1)
+           <li class="nav-item">
+             <a href="#" class="nav-link">
+               <i class="nav-icon fas fa-copy"></i>
+               <p>
+                 Settings
+                 <i class="fas fa-angle-left right"></i>
+               </p>
+             </a>
+             <ul class="nav nav-treeview">
+               <li class="nav-item">
+                 <a href="{{route('seo.setting')}}" class="nav-link">
+                   <i class="far fa-circle nav-icon"></i>
+                   <p>SEO Settings</p>
+                 </a>
+               </li>
+               <li class="nav-item">
+                 <a href="{{route('website.setting')}}" class="nav-link">
+                   <i class="far fa-circle nav-icon"></i>
+                   <p>Website Setting</p>
+                 </a>
+               </li>
+               <li class="nav-item">
+                 <a href="{{route('page.index')}}" class="nav-link">
+                   <i class="far fa-circle nav-icon"></i>
+                   <p>Page Create</p>
+                 </a>
+               </li>
+               <li class="nav-item">
+                 <a href="{{route('smtp.setting')}}" class="nav-link">
+                   <i class="far fa-circle nav-icon"></i>
+                   <p>SMTP Setting</p>
+                 </a>
+               </li>
+               <li class="nav-item">
+                 <a href="{{route('warehouse.index')}}" class="nav-link">
+                   <i class="far fa-circle nav-icon"></i>
+                   <p>Warehouse</p>
+                 </a>
+               </li>
+               <li class="nav-item">
+                 <a href="{{ route('payment.gateway') }}" class="nav-link">
+                   <i class="far fa-circle nav-icon"></i>
+                   <p>Payment Gateway</p>
+                 </a>
+               </li>
+             </ul>
+           </li>
+         @endif
+         
+        
+         @if(Auth::user()->userrole==1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
-                Pickup
+               User Role
                 <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">1</span>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('pickup-point.index')}}" class="nav-link">
+                <a href="{{ route('create.role') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Pickup</p>
+                  <p>Create New Role</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('manage.role') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Manage Role</p>
                 </a>
               </li>
             </ul>
-            
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-copy"></i>
-                <p>
-                 Ticket
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{ route('ticket.index') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Ticket</p>
-                  </a>
-                </li>   
-              </ul>
-            </li>
-            
           </li>
+          @endif
           
           <!-- <li class="nav-header">LABELS</li>
           <li class="nav-item">
