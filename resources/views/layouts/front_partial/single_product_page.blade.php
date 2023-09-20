@@ -2,16 +2,6 @@
     use App\Models\Review;
 @endphp
 
-@php
-    $review_5=Review::where('product_id',$product->id)->where('rating',5)->count();
-    $review_4=Review::where('product_id',$product->id)->where('rating',4)->count();
-    $review_3=Review::where('product_id',$product->id)->where('rating',3)->count();
-    $review_2=Review::where('product_id',$product->id)->where('rating',2)->count();
-    $review_1=Review::where('product_id',$product->id)->where('rating',1)->count();
-    $sum_rating=Review::where('product_id',$product->id)->sum('rating');
-    $count_rating=Review::where('product_id',$product->id)->count('rating');
-@endphp
-
 <style type="text/css">
 	.checked {
   color: orange;
@@ -19,24 +9,24 @@
 </style>
 
 @php
-//  $review_5=App\Models\Review::where('product_id',$product->id)->where('rating',5)->count();
-//  $review_4=App\Models\Review::where('product_id',$product->id)->where('rating',4)->count();
-//  $review_3=App\Models\Review::where('product_id',$product->id)->where('rating',3)->count();
-//  $review_2=App\Models\Review::where('product_id',$product->id)->where('rating',2)->count();
-//  $review_1=App\Models\Review::where('product_id',$product->id)->where('rating',1)->count();
-//  $sum_rating=App\Models\Review::where('product_id',$product->id)->sum('rating');
-//  $count_rating=App\Models\Review::where('product_id',$product->id)->count('rating');
- //Share plugin
-			 // Share button 1
-        //  $shareButtons1 = \Share::page(
-        //       url()->current()
-        //  )
-        //  ->facebook()
-        //  ->twitter()
-        //  ->linkedin()
-        //  ->telegram()
-        //  ->whatsapp()
-        //  ->reddit();
+ $review_5=App\Models\Review::where('product_id',$product->id)->where('rating',5)->count();
+ $review_4=App\Models\Review::where('product_id',$product->id)->where('rating',4)->count();
+ $review_3=App\Models\Review::where('product_id',$product->id)->where('rating',3)->count();
+ $review_2=App\Models\Review::where('product_id',$product->id)->where('rating',2)->count();
+ $review_1=App\Models\Review::where('product_id',$product->id)->where('rating',1)->count();
+ $sum_rating=App\Models\Review::where('product_id',$product->id)->sum('rating');
+ $count_rating=App\Models\Review::where('product_id',$product->id)->count('rating');
+// Share plugin
+			 
+         $shareButtons1 = \Share::page(
+              url()->current()
+         )
+         ->facebook()
+         ->twitter()
+         ->linkedin()
+         ->telegram()
+         ->whatsapp()
+         ->reddit();
 @endphp
 
     <!-- Single Product -->
@@ -228,7 +218,7 @@
     
 
 				<div class="col-lg-3 order-3" style="border-left: 1px solid grey; padding-left: 10px;">
-					{{-- {!! $shareButtons1 !!} --}}
+					{!! $shareButtons1 !!}
 				<strong class="text-muted">Pickup Point of this product</strong><br>
 				<i class="fa fa-map">{{$product->Pickup->pickup_point_name}}</i><hr><br>
 				<strong class="text-muted"> Home Delivery :</strong><br>
